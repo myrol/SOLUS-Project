@@ -1,0 +1,3 @@
+Irgendwie will Unity die angehängte Kamera an dem Spieler erkennen.
+Beim Script PlayerInteract, muss halt die Player Kamera übergeben werden, aber das kriegt er nicht hin.
+Viellicht hast du eine Ahnung wie wir die angehöngte Kamera beim PlayerInteract übergeben können
