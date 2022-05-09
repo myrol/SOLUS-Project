@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public Camera cam;
+    public GameObject cam;
     private float distance = 3f;
     public LayerMask mask;
 
     void Start()
     {
-        cam = GetComponent<Camera>();
+        
     }
 
     // Update is called once per frame
