@@ -18,9 +18,9 @@ public class Movement : MonoBehaviour
 
     //Variablen fürs Springen
     Vector3 moveAtTakeoff;
-    public float jumpTrajectoryControl = 0.5f; // inwiefern der Spieler kontroller in der Luft hat
-    public float jumpThrust = 1f;
-    public float jumpheight = 0.5f;
+    private float jumpTrajectoryControl = 0.5f; // inwiefern der Spieler kontroller in der Luft hat
+    private float jumpThrust = 1f;
+    private float jumpheight = 0.5f;
     private bool isJumping;
 
     //Variablen für Ducken
@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour
         }
 
         //Wenn LStrg gedrückt wird, duckt sich der Spieler
-        if (Input.GetKey(KeyCode.LeftControl) && isGrounded && !isJumping)
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             controller.height = crouchHeight;
             speed = 3f;
