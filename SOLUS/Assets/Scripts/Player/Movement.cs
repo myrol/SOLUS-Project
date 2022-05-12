@@ -12,12 +12,15 @@ public class Movement : MonoBehaviour
     //Variablen fürs Fallen
     private float gravity = -9.81f;
     public Transform groundCheck;
-    private float distance = 0.4f;
+    private float distance = 0.1f;
     public LayerMask groundMask;
     private bool isGrounded;
 
     //Variablen fürs Springen
-    private float jumpheight = 1.5f;
+    Vector3 moveAtTakeoff;
+    public float jumpTrajectoryControl = 0.5f; // inwiefern der Spieler kontroller in der Luft hat
+    public float jumpThrust = 1f;
+    public float jumpheight = 0.5f;
     private bool isJumping;
 
     //Variablen für Ducken
@@ -33,35 +36,35 @@ public class Movement : MonoBehaviour
         //Wenn Spieler auf dem Boden, wird die Fallgeschwindigkeit reduziert
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            isJumping = false;
+            velocity = new Vector3(0f, -2f, 0f);
+            moveAtTakeoff = new Vector3(0f, 0f, 0f);
         }
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        //Spieler Bewegung
         Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move.normalized * speed * Time.deltaTime);
+        //Spieler Bewegung
+        if (!isJumping)
+        {
+            controller.Move(move.normalized * speed * Time.deltaTime);
+        } else
+        {
+            controller.Move(move.normalized * speed * Time.deltaTime * jumpTrajectoryControl);
+        }
 
         //Wenn Leertaste gedrückt wird, springt der Spieler
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpheight * (-2f) * gravity);
+            isJumping = true;
+            moveAtTakeoff = move;
+            velocity = new Vector3(0f, Mathf.Sqrt(jumpheight * (-2f) * gravity), 0f);
+            velocity += moveAtTakeoff.normalized * speed * jumpThrust;
         }
-
 
         //Wenn LStrg gedrückt wird, duckt sich der Spieler
-        if (Input.GetKey(KeyCode.LeftControl) && isGrounded && isJumping == false)
-        {
-            isCrouching = true;
-        }
-        else
-        {
-            isCrouching = false;
-        }
-
-        if(isCrouching == true)
+        if (Input.GetKey(KeyCode.LeftControl) && isGrounded && !isJumping)
         {
             controller.height = crouchHeight;
             speed = 3f;
@@ -72,6 +75,7 @@ public class Movement : MonoBehaviour
             speed = 7f;
         }
 
+        Debug.Log(moveAtTakeoff.x + " " + moveAtTakeoff.y + " " + moveAtTakeoff.z);
         //Spieler Bewegung in der Luft
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
