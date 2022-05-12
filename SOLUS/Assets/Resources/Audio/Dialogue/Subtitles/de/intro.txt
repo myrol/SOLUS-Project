@@ -1,0 +1,3 @@
+000.254|<b>Announcer</b>: Herzlich Willkommen zur freiwilligen, interaktiven und weitreichend getesteten Übungsumgebung! 
+006.885|<b>Announcer</b>: Ich bin heute ihr Begleiter und Ansprechpartner innerhalb dieser Testumgebung und werde Sie durch diese Trainingseinheit leiten.
+014.588|<b>Announcer</b>: Bevor wir fortfahren, lassen Sie sich Zeit und gewöhnen Sie sich an die neue, für Sie angepasste Atmosphäre und Umgebung.
