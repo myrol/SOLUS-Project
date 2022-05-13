@@ -18,8 +18,8 @@ public class Movement : MonoBehaviour
 
     //Variablen fürs Springen
     Vector3 moveAtTakeoff;
-    private float jumpTrajectoryControl = 0.5f; // inwiefern der Spieler kontroller in der Luft hat
-    private float jumpThrust = 1f;
+    private float jumpTrajectoryControl = .5f; // % inwiefern der Spieler kontroller in der Luft hat
+    private float jumpThrust = .8f; // % vom movement speed
     private float jumpheight = 0.5f;
     private bool isJumping;
 
@@ -44,14 +44,15 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 move = (transform.right * x + transform.forward * z).normalized;
         //Spieler Bewegung
         if (!isJumping)
         {
-            controller.Move(move.normalized * speed * Time.deltaTime);
+            controller.Move(move * speed * Time.deltaTime);
         } else
         {
-            controller.Move(move.normalized * speed * Time.deltaTime * jumpTrajectoryControl);
+            //velocity += (move.normalized * speed * Time.deltaTime * jumpTrajectoryControl);
+            controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
         }
 
         //Wenn Leertaste gedrückt wird, springt der Spieler
@@ -60,7 +61,7 @@ public class Movement : MonoBehaviour
             isJumping = true;
             moveAtTakeoff = move;
             velocity = new Vector3(0f, Mathf.Sqrt(jumpheight * (-2f) * gravity), 0f);
-            velocity += moveAtTakeoff.normalized * speed * jumpThrust;
+            velocity += moveAtTakeoff * speed * jumpThrust;
         }
 
         //Wenn LStrg gedrückt wird, duckt sich der Spieler
