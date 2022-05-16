@@ -6,7 +6,9 @@ public class Movement : MonoBehaviour
 {
     //Variablen für Bewegung
     public CharacterController controller;
-    private float speed = 7f;
+    private float speed = 0f;
+    private float maxSpeed;
+    private float acceleration = 0.15f;
     Vector3 velocity;
 
     //Variablen fürs Fallen
@@ -24,7 +26,9 @@ public class Movement : MonoBehaviour
     private bool isJumping;
 
     //Variablen für Ducken
-    private float crouchHeight = 1.3f;
+    private float crouchingSpeed = 3f;
+    private float standingSpeed = 7f;
+    private float crouchHeight = 1f;
     private float standingHeight = 2f;
     private bool isCrouching;
 
@@ -44,6 +48,18 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
+        if (x != 0 || z != 0)
+        {
+            speed += acceleration;
+        } else if (x == 0 && z == 0)
+        {
+            speed -= acceleration * 10f;
+        }
+
+        speed = Mathf.Clamp(speed, 0, maxSpeed);
+
+        Debug.Log(speed);
+
         Vector3 move = (transform.right * x + transform.forward * z).normalized;
         //Spieler Bewegung
         if (!isJumping)
@@ -51,8 +67,8 @@ public class Movement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
         } else
         {
-            //velocity += (move.normalized * speed * Time.deltaTime * jumpTrajectoryControl);
-            controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
+            velocity += (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
+            //controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
         }
 
         //Wenn Leertaste gedrückt wird, springt der Spieler
@@ -68,15 +84,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             controller.height = crouchHeight;
-            speed = 3f;
+            maxSpeed = crouchingSpeed;
         }
         else
         {
             controller.height = standingHeight;
-            speed = 7f;
+            maxSpeed = standingSpeed;
         }
 
-        Debug.Log(moveAtTakeoff.x + " " + moveAtTakeoff.y + " " + moveAtTakeoff.z);
         //Spieler Bewegung in der Luft
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
