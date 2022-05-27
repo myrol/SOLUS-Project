@@ -6,31 +6,29 @@ public class Movement : MonoBehaviour
 {
     //Variablen für Bewegung
     public CharacterController controller;
-    private float speed = 0f;
-    private float maxSpeed;
-    private float acceleration = 0.15f;
-    Vector3 velocity;
+    private float speed = 7f;
+    private Vector3 velocity;
+    private Vector2 currentInputVector;
+    private Vector2 smoothInputVelocity;
+    private float smoothInputSpeed = .2f;
 
     //Variablen fürs Fallen
-    private float gravity = -9.81f;
+    private float gravity = -11f;
     public Transform groundCheck;
     private float distance = 0.1f;
     public LayerMask groundMask;
     private bool isGrounded;
 
     //Variablen fürs Springen
-    Vector3 moveAtTakeoff;
     private float jumpTrajectoryControl = .5f; // % inwiefern der Spieler kontroller in der Luft hat
     private float jumpThrust = .8f; // % vom movement speed
     private float jumpheight = 0.5f;
-    private bool isJumping;
 
     //Variablen für Ducken
     private float crouchingSpeed = 3f;
     private float standingSpeed = 7f;
     private float crouchHeight = 1f;
     private float standingHeight = 2f;
-    private bool isCrouching;
 
     void Update()
     {
@@ -40,60 +38,43 @@ public class Movement : MonoBehaviour
         //Wenn Spieler auf dem Boden, wird die Fallgeschwindigkeit reduziert
         if (isGrounded && velocity.y < 0)
         {
-            isJumping = false;
             velocity = new Vector3(0f, -2f, 0f);
-            moveAtTakeoff = new Vector3(0f, 0f, 0f);
         }
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        if (x != 0 || z != 0)
-        {
-            speed += acceleration;
-        } else if (x == 0 && z == 0)
-        {
-            speed -= acceleration * 10f;
-        }
+        currentInputVector = new Vector2(x, z);
 
-        speed = Mathf.Clamp(speed, 0, maxSpeed);
-
-        Debug.Log(speed);
-
-        Vector3 move = (transform.right * x + transform.forward * z).normalized;
+        Vector3 move = (transform.right * currentInputVector.x + transform.forward * currentInputVector.y).normalized;
         //Spieler Bewegung
-        if (!isJumping)
-        {
+        if (isGrounded) {
             controller.Move(move * speed * Time.deltaTime);
-        } else
-        {
-            velocity += (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
-            //controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
+        } else {
+            //velocity += (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
+            controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
         }
 
         //Wenn Leertaste gedrückt wird, springt der Spieler
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            isJumping = true;
-            moveAtTakeoff = move;
             velocity = new Vector3(0f, Mathf.Sqrt(jumpheight * (-2f) * gravity), 0f);
-            velocity += moveAtTakeoff * speed * jumpThrust;
+            velocity += move * speed * jumpThrust;
         }
 
         //Wenn LStrg gedrückt wird, duckt sich der Spieler
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
+        if (Input.GetKey(KeyCode.LeftControl)) {
             controller.height = crouchHeight;
-            maxSpeed = crouchingSpeed;
-        }
-        else
-        {
+            speed = crouchingSpeed;
+        } else {
             controller.height = standingHeight;
-            maxSpeed = standingSpeed;
+            speed = standingSpeed;
         }
 
         //Spieler Bewegung in der Luft
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        Debug.Log(groundCheck.position.x + " " + groundCheck.position.y + " " + groundCheck.position.z);
     }
 }
