@@ -74,7 +74,5 @@ public class Movement : MonoBehaviour
         //Spieler Bewegung in der Luft
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        Debug.Log(groundCheck.position.x + " " + groundCheck.position.y + " " + groundCheck.position.z);
     }
 }

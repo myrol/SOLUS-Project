@@ -12,8 +12,9 @@ public class DialogueManager : MonoBehaviour
     //Subtitle Variables
     private const float _RATE = 44100.0f;
 
-    private AudioClip dialogueAudio;
-    private AudioSource audio;
+    private Queue<AudioClip> queue;     // All audios will be stored in a queue
+    private AudioClip dialogueAudio;    // Actual audiofile
+    private AudioSource audio;          // AudioSource with reverb and stuff
 
     private string displaySubtitle;
 
@@ -48,6 +49,22 @@ public class DialogueManager : MonoBehaviour
         arz.reverbPreset = AudioReverbPreset.Room;
         arz.minDistance = 45f;
         arz.maxDistance = 45f;
+
+        queue = new Queue<AudioClip>();
+    }
+
+    public void AddToQueue(AudioClip dialogue)
+    {
+        queue.Enqueue(dialogue);
+    }
+
+    public void Update()
+    {
+        // If nothing is playing and there are still dialogues in queue, Play them.
+        if (queue.Count > 0 && (audio == null || !audio.isPlaying))
+        {
+            BeginDialogue(queue.Dequeue());
+        }
     }
 
     public void BeginDialogue(AudioClip passedClip)
@@ -109,7 +126,7 @@ public class DialogueManager : MonoBehaviour
                 subtitleStyle.normal.textColor = Color.white;
                 subtitleStyle.fontSize = Mathf.FloorToInt(Screen.height * 0.0225f);
 
-                //Style
+                // Style
                 Vector2 size = subtitleStyle.CalcSize(new GUIContent());
                 // Drop Shadow
                 GUI.contentColor = Color.black;
