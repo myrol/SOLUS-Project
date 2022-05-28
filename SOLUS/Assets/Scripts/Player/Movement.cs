@@ -58,7 +58,6 @@ public class Movement : MonoBehaviour
 
         speed = Mathf.Clamp(speed, 0, maxSpeed);
 
-        Debug.Log(speed);
 
         Vector3 move = (transform.right * x + transform.forward * z).normalized;
         //Spieler Bewegung
