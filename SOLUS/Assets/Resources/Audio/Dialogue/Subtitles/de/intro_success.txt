@@ -1,0 +1,4 @@
+000.239|<b>Announcer</b>: Hervorragende Arbeit.
+002.652|<b>Announcer</b>: Die zweite Vorbereitungsphase ist hiermit abgeschlossen.
+006.906|<b>Announcer</b>: Wir danken für Ihre Kooperation.
+009.981|<b>Announcer</b>: Bitte begeben Sie sich zur Plattform um fortzufahren.
