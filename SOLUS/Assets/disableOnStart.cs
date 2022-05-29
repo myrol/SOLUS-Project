@@ -6,32 +6,20 @@ using UnityEngine.SceneManagement;
 public class disableOnStart : MonoBehaviour
 {
     GameObject player;
-    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Camera");
+        player = GameObject.Find("PlayerCapsule");
         player.SetActive(false);
-
-
-        SceneManager.activeSceneChanged += ChangedActiveScene;
-
-        // wait 1.5 seconds before change to Scene2
     }
-
-    public delegate void Change();
-
-    private void ChangedActiveScene(Scene current, Scene next)
+    void ExampleCoroutine()
     {
-        string currentName = current.name;
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
-        player.SetActive(false);
-        if (currentName == null)
-        {
-            // Scene1 has been removed
-            currentName = "Replaced";
-        }
+        //yield on a new YieldInstruction that waits for 5 seconds.
 
-        Debug.Log("Scenes: " + currentName + ", " + next.name);
+        //After we have waited 5 seconds print the time again.
+        player.SetActive(true);
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
-
 }
