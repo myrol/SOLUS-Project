@@ -193,7 +193,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     Debug.Log("Invoke " + triggerMethodNames[nextTrigger] + " on " + triggerObjectNames[nextTrigger]);
                     GameObject obj = GameObject.Find(triggerObjectNames[nextTrigger]);
-                    obj.SendMessage(triggerMethodNames[nextTrigger]);
+                    obj.SendMessage(triggerMethodNames[nextTrigger], null, SendMessageOptions.DontRequireReceiver);
                     nextTrigger++;
                 }
             }
