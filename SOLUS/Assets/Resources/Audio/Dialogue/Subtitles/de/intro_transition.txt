@@ -1,2 +1,8 @@
-000.215|<b>Announcer</b>: Initiiere SOLUS.
-001.000|<trigger>Platform-moveDown
+000.001|<b>Announcer</b>: Initiiere:
+000.950|<b>SOLUS</b>
+001.957|<b>Announcer</b>: Nun werden Sie zum Testbereich transportiert.
+003.901|<b>Announcer</b>: Bitte bereiten Sie sich auf eventuelle Bewegungen des Bodens vor.
+006.450|<b>Announcer</b>: Gleich könnte ein leichtes Gefühl von Schwindel einsetzen.
+008.200|<trigger>Platform-moveDown
+008.483|<b>Announcer</b>: Hier ist etwas entspannende Musik, um Ihren Brechreiz zu vermindern.
+010.700|
