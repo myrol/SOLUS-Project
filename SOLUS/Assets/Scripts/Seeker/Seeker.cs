@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Seeker1 : MonoBehaviour
+public class Seeker : MonoBehaviour
 {
     // Update is called once per frame
     void Start()

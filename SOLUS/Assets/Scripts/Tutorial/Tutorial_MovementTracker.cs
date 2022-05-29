@@ -6,11 +6,20 @@ public class Tutorial_MovementTracker : MonoBehaviour
 {
     public AudioClip dialogue;
 
-    private const long threshold = 500; // Circa 15 Sekunden rumlaufen
+    private const long threshold = 1000; // Circa 15 Sekunden rumlaufen
     private long counter = 0; // "Duration" the player holds the movement keys for
+
+    private bool active = false;
+
+    public void activate()
+    {
+        active = true;        
+    }
 
     private void Update()
     {
+        if (active == false) return;
+
         if (movementKeyPressed()) counter++;
 
         if (counter >= threshold)

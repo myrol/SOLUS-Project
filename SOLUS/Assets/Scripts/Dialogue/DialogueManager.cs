@@ -22,7 +22,6 @@ public class DialogueManager : MonoBehaviour
     private List<string> subtitleLines;         // Die einzelnen Lines in der .txt Datei
     private List<string> subtitleTimingStrings; // Geparste Strings
     private List<float> subtitleTimings;        // Interpretierte floats
-
     private List<string> subtitleText;           // Der eigentliche Text
 
     private int nextSubtitle = 0;
@@ -30,14 +29,13 @@ public class DialogueManager : MonoBehaviour
     private GUIStyle subtitleStyle = new GUIStyle();
 
     // Trigger variables
-    public List<string> triggerLines = new List<string>();
+    private List<string> triggerLines = new List<string>();
 
-    public List<string> triggerTimingStrings = new List<string>();
-    public List<float> triggerTimings = new List<float>();
-
-    public List<string> triggers = new List<string>();
-    public List<string> triggerObjectNames = new List<string>();
-    public List<string> triggerMethodNames = new List<string>();
+    private List<string> triggerTimingStrings = new List<string>();
+    private List<float> triggerTimings = new List<float>();
+    private List<string> triggers = new List<string>();
+    private List<string> triggerObjectNames = new List<string>();
+    private List<string> triggerMethodNames = new List<string>();
 
     private int nextTrigger = 0;
 
@@ -70,7 +68,7 @@ public class DialogueManager : MonoBehaviour
         queue.Enqueue(dialogue);
     }
 
-    public void Update()
+    private void Update()
     {
         // If nothing is playing and there are still dialogues in queue, Play them.
         if (queue.Count > 0 && (audio == null || !audio.isPlaying))
@@ -81,6 +79,7 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginDialogue(AudioClip passedClip)
     {
+        nextTrigger = 0;
         nextSubtitle = 0;
         dialogueAudio = passedClip;
 
@@ -192,6 +191,7 @@ public class DialogueManager : MonoBehaviour
             {
                 if (audio.timeSamples/_RATE > triggerTimings[nextTrigger])
                 {
+                    Debug.Log("Invoke " + triggerMethodNames[nextTrigger] + " on " + triggerObjectNames[nextTrigger]);
                     GameObject obj = GameObject.Find(triggerObjectNames[nextTrigger]);
                     obj.SendMessage(triggerMethodNames[nextTrigger]);
                     nextTrigger++;

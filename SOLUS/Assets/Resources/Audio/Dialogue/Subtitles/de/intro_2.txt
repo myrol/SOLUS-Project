@@ -1,1 +1,2 @@
 000.194|<b>Announcer</b>: Nach der langen Hibernation während der ersten Vorbereitungsphase, bei der, um die Qualität des Experimentes zu gewährleisten, die Versiegelung Ihres bisherigen Langzeitgedächtnisses stattfand, sollten Sie sich wieder an Ihre Muskulatur und Ihren Körperbau gewöhnen.
+015.000|<trigger>intro_3-activate
