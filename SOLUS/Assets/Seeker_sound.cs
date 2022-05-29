@@ -6,16 +6,16 @@ public class Seeker_sound : MonoBehaviour
 {
     public AudioClip floating;
     private AudioSource Audio;
+    public bool isNight = true;
 
     void Update()
-    {/*
-        if ()
+    {
+        if (isNight)
         {
-
+            Audio = GetComponent<AudioSource>();
+            Audio.clip = floating;
+            Audio.loop = true;
+            Audio.Play();
         }
-        Audio = GetComponent<AudioSource>();
-        Audio.clip = floating;
-        Audio.loop = true;
-        Audio.Play();
-    */}
+    }
 }
