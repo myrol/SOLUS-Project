@@ -1,1 +1,2 @@
 000.215|<b>Announcer</b>: Initiiere SOLUS.
+001.000|<trigger>Platform-moveDown

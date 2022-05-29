@@ -29,6 +29,18 @@ public class DialogueManager : MonoBehaviour
 
     private GUIStyle subtitleStyle = new GUIStyle();
 
+    // Trigger variables
+    public List<string> triggerLines = new List<string>();
+
+    public List<string> triggerTimingStrings = new List<string>();
+    public List<float> triggerTimings = new List<float>();
+
+    public List<string> triggers = new List<string>();
+    public List<string> triggerObjectNames = new List<string>();
+    public List<string> triggerMethodNames = new List<string>();
+
+    private int nextTrigger = 0;
+
     public static DialogueManager Instance { get; private set; }
 
     public void Awake()
@@ -78,6 +90,13 @@ public class DialogueManager : MonoBehaviour
         subtitleTimings = new List<float>();
         subtitleText = new List<string>();
 
+        triggerLines = new List<string>();
+        triggerTimingStrings = new List<string>();
+        triggerTimings = new List<float>();
+        triggers = new List<string>();
+        triggerObjectNames = new List<string>();
+        triggerMethodNames = new List<string>();
+
         // Get everything from the .txt file
         string subtitlesPath = "Audio/Dialogue/Subtitles/de/" + dialogueAudio.name;
         TextAsset temp = Resources.Load(subtitlesPath) as TextAsset;
@@ -86,7 +105,14 @@ public class DialogueManager : MonoBehaviour
         // Split subtitle related lines into different lists
         foreach(string line in fileLines)
         {
-            subtitleLines.Add(line);
+            if(line.Contains("<trigger>"))
+            {
+                triggerLines.Add(line);
+            } 
+            else
+            {
+                subtitleLines.Add(line);
+            }
         }
 
         // Split out our timings and text
@@ -98,6 +124,20 @@ public class DialogueManager : MonoBehaviour
             // System.Global...InvariantCulture ist fuer die Formatunterscheidung zwischen 3.1415 und 3,1415
             subtitleTimings.Add(float.Parse(subtitleTimingStrings[i], System.Globalization.CultureInfo.InvariantCulture)); 
             subtitleText.Add(splitTemp[1]);
+        }
+
+        for (int i = 0; i < triggerLines.Count; i++)
+        {
+            string[] splitTemp = triggerLines[i].Split('|');
+            triggerTimingStrings.Add(splitTemp[0]);
+            triggerTimings.Add(float.Parse(triggerTimingStrings[i], System.Globalization.CultureInfo.InvariantCulture));
+
+            triggers.Add(splitTemp[1]);
+            string[] splitTemp2 = triggers[i].Split('-');
+            splitTemp2[0] = splitTemp2[0].Replace("<trigger>", "");
+            triggerObjectNames.Add(splitTemp2[0]);
+            triggerMethodNames.Add(splitTemp2[1]);
+
         }
 
         // Set initial subtitle text
@@ -144,6 +184,17 @@ public class DialogueManager : MonoBehaviour
                 {
                     displaySubtitle = subtitleText[nextSubtitle];
                     nextSubtitle++;
+                }
+            }
+
+            // Trigger ausführen, basierend darauf, wo wir uns in der Audio befinden
+            if(nextTrigger < triggers.Count)
+            {
+                if (audio.timeSamples/_RATE > triggerTimings[nextTrigger])
+                {
+                    GameObject obj = GameObject.Find(triggerObjectNames[nextTrigger]);
+                    obj.SendMessage(triggerMethodNames[nextTrigger]);
+                    nextTrigger++;
                 }
             }
 

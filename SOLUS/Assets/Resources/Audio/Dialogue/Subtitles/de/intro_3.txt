@@ -1,1 +1,2 @@
 000.249|<b>Announcer</b>: Sehr gut! Sie dürfen nun diesen Einführungs-Bereich verlassen.
+001.000|<trigger>DoorPivot-open
