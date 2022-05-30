@@ -7,7 +7,7 @@ public class PlatformMove : MonoBehaviour
 {
     private bool canMove = false;
 
-    private float speed = 4f;
+    [SerializeField]private float speed = 1.1f;
 
     public void moveDown()
     {

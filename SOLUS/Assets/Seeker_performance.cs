@@ -5,16 +5,23 @@ using UnityEngine.VFX;
 
 public class Seeker_performance : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        VisualEffect v = GetComponent<VisualEffect>();
-        v.playRate = 0.2f;
-    }
-
-    // Update is called once per frame
+    GameObject Seekers;
+    GameObject Tuto;
+    bool done = false;
     void Update()
     {
-        
+        if (QualitySettings.GetQualityLevel() == 0)
+        {
+            Seekers = GameObject.Find("Seekers");
+            Seekers.SetActive(false);
+        }
+        else if(!done)
+        {
+            Tuto = GameObject.Find("Tutorial");
+            GameObject player = GameObject.Find("PlayerCapsule");
+            player.transform.position = new Vector3(60.0f, 60.0f, 60.0f);
+            Tuto.SetActive(false);
+            done = true;
+        }
     }
 }
