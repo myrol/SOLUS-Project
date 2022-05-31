@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public GameObject cam;
-    private float distance = 3f;
+    private float distance = 5f;
     public LayerMask mask;
 
     // Update is called once per frame
@@ -17,8 +17,11 @@ public class PlayerInteract : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, distance, mask))
         {
-            hit.collider.GetComponent<Interactable>().BaseInteract();
-            Debug.Log(hit.collider.GetComponent<Interactable>().message);
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                hit.collider.GetComponent<Interactable>().BaseInteract();
+                // Debug.Log(hit.collider.GetComponent<Interactable>().message);
+            }
         }
     }
 }
