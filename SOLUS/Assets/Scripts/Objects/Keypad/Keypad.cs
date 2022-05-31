@@ -30,6 +30,19 @@ public class Keypad : MonoBehaviour
     {
         if (solved || temporaryLock) return;
 
+        if (number.Equals("#"))
+        {
+            userInput = EMPTY;
+            display.text = EMPTY;
+            return;
+        }
+        if (number.Equals("*"))
+        {
+            userInput = userInput.Substring(0, userInput.Length - 1);
+            display.text = userInput;
+            return;
+        }
+
         userInput += number;
 
         /*
