@@ -1,15 +1,14 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : Interactable
+public class Cube : Carryable
 {
     public Rigidbody rb;
     public MeshRenderer meshRenderer;
-    public Transform player;
+    public Transform carryPosition;
     private Transform originalParent;
-
-    private bool isGrabbed = false;
 
     private const string MATERIAL_PATH = "Materials/Room1/Button/";
 
@@ -42,21 +41,29 @@ public class Cube : Interactable
                 break;
         }
     }
-    protected override void Interact()
+    public override void PickUp()
     {
-        if (isGrabbed)
+        rb.useGravity = false;
+        rb.drag = 20;
+    }
+
+    public override void Drop()
+    {
+        rb.drag = 1;
+        rb.useGravity = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (pickedUp)
         {
-            transform.SetParent(originalParent);
-            rb.isKinematic = false;
-            rb.useGravity = true;
-            isGrabbed = false;
-        } 
-        else
-        {
-            transform.SetParent(player);
-            rb.isKinematic = true;
-            rb.useGravity = false;
-            isGrabbed = true;
+            Vector3 target = carryPosition.position;
+            float dist = Vector3.Distance(target, transform.position);
+            if (dist > 0.01f)
+            {
+                Vector3 dir = target - transform.position;
+                rb.AddForce(dir * 250);
+            }
         }
     }
 }
