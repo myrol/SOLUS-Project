@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public GameObject cam;
-    private float distance = 5f;
+    private float distance = 2f;
     public LayerMask mask;
 
     // Update is called once per frame

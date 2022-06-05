@@ -5,17 +5,53 @@ using UnityEngine.Events;
 
 public class ButtonTrigger : MonoBehaviour
 {
+    [SerializeField]
+    private MeshRenderer buttonMesh;
+
     private const byte BLACK = 0;
     private const byte BLUE = 1;
     private const byte GREEN = 2;
     private const byte RED = 3;
 
+    private const string MATERIAL_PATH = "Materials/Room1/Button/";
+
     [SerializeField]
-    private byte color;
+    [Range(0, 3)]
+    private byte color = 0;
     
     public LayerMask interactablesLayer;
     public UnityEvent buttonPressed;
     public UnityEvent buttonUnpressed;
+
+    private void Start()
+    {
+        changeColor(color);
+    }
+
+    private void FixedUpdate()
+    {
+        changeColor(color);
+    }
+
+    private void changeColor(byte _color)
+    {
+        switch (color)
+        {
+            case 0:
+                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "black");
+                break;
+            case 1:
+                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "blue");
+                break;
+            case 2:
+                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "green");
+                break;
+            case 3:
+                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "red");
+                break;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Cube c = other.gameObject.GetComponent<Cube>();

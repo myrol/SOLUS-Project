@@ -6,7 +6,7 @@ public class CubeButton : MonoBehaviour
 {
     private bool isActive = false;
     [SerializeField]
-    private float goDownBy = 0.1f;
+    private float goDownBy = 0.05f;
 
     public void activate()
     {
