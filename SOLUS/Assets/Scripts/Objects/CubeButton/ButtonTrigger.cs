@@ -15,6 +15,8 @@ public class ButtonTrigger : MonoBehaviour
 
     private const string MATERIAL_PATH = "Materials/Room1/Button/";
 
+    private List<Collider> cubesOnButton;
+
     [SerializeField]
     [Range(0, 3)]
     private byte color = 0;
@@ -26,6 +28,7 @@ public class ButtonTrigger : MonoBehaviour
     private void Start()
     {
         changeColor(color);
+        cubesOnButton = new List<Collider>();
     }
 
     private void FixedUpdate()
@@ -60,16 +63,28 @@ public class ButtonTrigger : MonoBehaviour
         // If it's the player or the color of the cube matches
         if(other.tag == "Player" || c.color == BLACK || c.color == color )
         {
-            buttonPressed.Invoke();
+            cubesOnButton.Add(other);
+
+            if (cubesOnButton.Count == 1)
+            {
+                buttonPressed.Invoke();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (!cubesOnButton.Contains(other)) return;
+
         if (other.tag == "Player" ||
-            other.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            other.gameObject.tag == "Cube")
         {
-            buttonUnpressed.Invoke();
+            cubesOnButton.Remove(other);
+
+            if (cubesOnButton.Count == 0)
+            {
+                buttonUnpressed.Invoke();
+            }
         }
     }
 }

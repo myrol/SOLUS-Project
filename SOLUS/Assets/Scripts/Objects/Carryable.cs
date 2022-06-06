@@ -4,13 +4,37 @@ using UnityEngine;
 
 public abstract class Carryable : MonoBehaviour      //Abstrakt damit man es für verschiedene Rätsel benutzen kann
 {
+    private Rigidbody rb;
     public bool pickedUp = false;
-    public virtual void PickUp()
+    public Transform carryPosition;
+
+    private void Awake()
     {
-        //Ist leer, da es überschrieben wird bei Unterklassen
+        rb = GetComponent<Rigidbody>();    
     }
-    public virtual void Drop()
+
+    public void PickUp()
     {
-        //Ist leer, da es überschrieben wird bei Unterklassen
+        rb.useGravity = false;
+        rb.drag = 15;
+    }
+    public void Drop()
+    {
+        rb.drag = 1;
+        rb.useGravity = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (pickedUp)
+        {
+            Vector3 target = carryPosition.position;
+            float dist = Vector3.Distance(target, transform.position);
+            if (dist > 0.01f)
+            {
+                Vector3 dir = target - transform.position;
+                rb.AddForce(dir * 250);
+            }
+        }
     }
 }
