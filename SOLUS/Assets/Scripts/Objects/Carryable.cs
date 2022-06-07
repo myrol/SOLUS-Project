@@ -5,11 +5,12 @@ using UnityEngine;
 public abstract class Carryable : MonoBehaviour      //Abstrakt damit man es für verschiedene Rätsel benutzen kann
 {
     private Rigidbody rb;
+    private Transform carryPosition;
     public bool pickedUp = false;
-    public Transform carryPosition;
 
     private void Awake()
     {
+        carryPosition = GameObject.Find("PickUp").transform;
         rb = GetComponent<Rigidbody>();    
     }
 

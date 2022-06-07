@@ -6,17 +6,17 @@ using UnityEngine;
 public class Cube : Carryable
 {
     public MeshRenderer meshRenderer;
-
-    private const string MATERIAL_PATH = "Materials/Room1/Button/";
-
-    [SerializeField][Range(0,3)]
-    public byte color;
-
+    [Range(0, 3)]public byte color;
+    
+    private const string MATERIAL_PATH = "Materials/Room1/Cubes/";
+    
+    
     // Update is called once per frame
     private void Start()
     {
         changeColor(color);
     }
+
     private void changeColor(byte _color)
     {
         switch (color)
