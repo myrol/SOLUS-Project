@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Carryable : MonoBehaviour      //Abstrakt damit man es für verschiedene Rätsel benutzen kann
+public class Carryable : MonoBehaviour      //Abstrakt damit man es für verschiedene Rätsel benutzen kann
 {
     private Rigidbody rb;
     private Transform carryPosition;
