@@ -8,7 +8,10 @@ public class DialogueTrigger : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        DialogueManager.Instance.AddToQueue(dialogueClip);
-        Destroy(gameObject);
+        if (other.tag == "Player")
+        {
+            DialogueManager.Instance.AddToQueue(dialogueClip);
+            Destroy(gameObject);
+        }
     }
 }

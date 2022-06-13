@@ -52,10 +52,9 @@ public class DialogueManager : MonoBehaviour
         Instance = this;
 
         // Fuer den Reverb
-        gameObject.AddComponent<AudioSource>();
-        gameObject.AddComponent<AudioReverbZone>();
+        audio = gameObject.AddComponent<AudioSource>();
+        AudioReverbZone arz = gameObject.AddComponent<AudioReverbZone>();
 
-        AudioReverbZone arz = gameObject.GetComponent<AudioReverbZone>();
         arz.reverbPreset = AudioReverbPreset.Room;
         arz.minDistance = 45f;
         arz.maxDistance = 45f;

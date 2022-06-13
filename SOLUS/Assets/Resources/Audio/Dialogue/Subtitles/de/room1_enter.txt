@@ -1,0 +1,3 @@
+000.300|<b>Announcer</b>: Sie haben mit Leichtigkeit die erste Kammer gefunden, Herzlichen Glückwunsch!
+002.000|<trigger>SlidingDoor1_2-open-
+005.529|<b>Announcer</b>: Bitte unterlassen Sie es fremde Objekte mit in die Kammer hinein zu tragen, da diese die Testergebnisse verfälschen.

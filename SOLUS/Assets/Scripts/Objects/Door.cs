@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private bool openOtherWay = false;
+
     private bool canOpen = false;
-    private float speed = 1f;
+    private float animationDuration = 3f;
     public void open()
     {
-        canOpen = true;
-    }
-    private void FixedUpdate()
-    {
-        if (canOpen == false) return;
-
-        if (transform.localRotation.y < 0.7071)
+        if (!openOtherWay)
         {
-            transform.Rotate(new Vector3(0, 1, 0));
+            transform.DOLocalRotate(new Vector3(0f, transform.localEulerAngles.y + 90f, 0f), animationDuration);
+        }
+        else
+        {
+            transform.DOLocalRotate(new Vector3(0f, transform.localEulerAngles.y - 90f, 0f), animationDuration);
         }
     }
 }
