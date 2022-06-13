@@ -14,7 +14,9 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<AudioClip> queue;     // All audios will be stored in a queue
     private AudioClip dialogueAudio;    // Actual audiofile
+#pragma warning disable CS0108
     private AudioSource audio;          // AudioSource with reverb and stuff
+#pragma warning restore CS0108
 
     private string displaySubtitle;
 

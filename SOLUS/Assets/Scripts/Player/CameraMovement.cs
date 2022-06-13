@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
     private float mouseSensitivity = 300f;
     public Transform playerBody;
     private float xRotation = 0f;
+    public bool cutScene = false;
 
     Vector2 mouse;
 
