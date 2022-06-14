@@ -13,7 +13,7 @@ public class Lever : Interactable
     private GameObject crosshair;
     private GameObject gears;
 
-    private int used = 0;
+    public int used;
 
     private void Start()
     {
@@ -21,6 +21,7 @@ public class Lever : Interactable
         player = GameObject.Find("PlayerCapsule");
         crosshair = GameObject.Find("crosshair");
         gears = GameObject.Find("Gears");
+        moving = GameObject.Find("moving");
     }
 
     public int getUsed()
@@ -38,23 +39,64 @@ public class Lever : Interactable
 
     protected override void Interact()
     {
-
-        if (used == 0)
+        if (GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().getProgress() == 2)
         {
-            StartCoroutine(SteampunkCutScene());
-        }
-        else if (used == 3)
-        {
-            used = -1;
-            //Start Gears, tesla, announcer and move laby
-            StartCoroutine(gears.GetComponent<turnGears>().turner());
+            if (used == 0)
+            {
+                StartCoroutine(ExplodeCutScene());
+            }
+            else if (used == 3)
+            {
+                StartCoroutine(ElectricCutScene());
+                GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().addProgress();
+            }
         }
     }
 
-    private IEnumerator SteampunkCutScene()
+    private IEnumerator ElectricCutScene()
     {
-        moving = GameObject.Find("moving");
-        //moving.transform.Rotate((-90.0f), 0.0f, 0.0f, Space.Self);
+        //Start Gears, tesla, announcer and move laby
+        moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
+        StartCoroutine(gears.GetComponent<turnGears>().turner());
+
+        Vector3 originalPlayerPos = player.transform.position;
+        Vector3 originalPlayRot = player.transform.localEulerAngles;
+        Vector3 originalCamRot = camera.transform.localEulerAngles;
+        //Disable Camera- and Player-movement and Cursor
+        player.transform.position = new Vector3(50.56f, 0.09f, 27.61f);
+        player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        camera.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        camera.GetComponent<CameraMovement>().enabled = false;
+        player.GetComponent<Movement>().enabled = false;
+        crosshair.SetActive(false);
+
+        yield return new WaitForSeconds(7);
+        //turn Camera to tesla
+        float elapsed = 0.0f;
+        while (elapsed < 2.0f)
+        {
+            player.transform.Rotate(0.0f, -0.18f * elapsed, 0.0f, Space.Self);
+            camera.transform.Rotate(-0.03f * elapsed, 0.0f, 0.0f, Space.Self);
+            player.transform.position = player.transform.position + new Vector3(0.007f, 0f, -0.007f);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(4);
+
+        player.transform.localRotation = Quaternion.Euler(originalPlayRot);
+        camera.transform.localRotation = Quaternion.Euler(originalCamRot);
+        camera.GetComponent<CameraMovement>().enabled = true;
+        player.GetComponent<Movement>().enabled = true;
+        crosshair.SetActive(true);
+        player.transform.position = originalPlayerPos;
+
+        used = -1;
+        yield return null;
+    }
+
+    private IEnumerator ExplodeCutScene()
+    {
         moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
 
         Vector3 originalPlayerPos = player.transform.position;

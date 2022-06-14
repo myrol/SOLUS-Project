@@ -15,7 +15,7 @@ public class pickUp2 : Interactable
     }
     protected override void Interact()
     {
-        if (lever.GetComponent<Lever>().getUsed() == 1)
+        if (lever.GetComponent<Lever>().getUsed() == 1 || lever.GetComponent<Lever>().getUsed() == 2)
         {
             gear2.transform.localPosition = new Vector3(53.888f, 2.199f, 47.762f);
             gear2.transform.localRotation = Quaternion.Euler(0f, 0f, 5.04f);

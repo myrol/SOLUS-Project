@@ -15,7 +15,7 @@ public class Seeker_performance : MonoBehaviour
             Seekers = GameObject.Find("Seekers");
             Seekers.SetActive(false);
         }
-        else if(!done)
+        else if (!done)
         {
             Tuto = GameObject.Find("Tutorial");
             GameObject player = GameObject.Find("PlayerCapsule");
