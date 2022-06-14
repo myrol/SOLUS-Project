@@ -8,6 +8,7 @@ public class turnGears : MonoBehaviour
     private GameObject gear8;  // -> 28
     private GameObject gear1;  // -> 12
     private GameObject tesla;
+    private GameObject transmission;
 
     public float speed;
 
@@ -17,6 +18,7 @@ public class turnGears : MonoBehaviour
         gear2 = GameObject.Find("gear2");
         gear8 = GameObject.Find("gear8");
         gear1 = GameObject.Find("gear1");
+        transmission = GameObject.Find("transmission");
         tesla = GameObject.Find("tesla");
     }
 
@@ -87,6 +89,7 @@ public class turnGears : MonoBehaviour
         gear11.transform.localPosition = new Vector3(71.641f, 5.233f, 34.754f);
         gear2.transform.localRotation = Quaternion.Euler(-45f, 45f, 0f);
         gear2.transform.localPosition = new Vector3(-23.007f, 0.439f, 33.313f);
+        transmission.transform.position = new Vector3(52.4137f, 2.272f, 48.04f);
         yield return null;
     }
 }
