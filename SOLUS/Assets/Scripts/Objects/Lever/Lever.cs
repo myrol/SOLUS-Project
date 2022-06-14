@@ -29,8 +29,11 @@ public class Lever : Interactable
     }
     public void setUsed(int setter)
     {
-        used = setter;
-        moving.transform.localRotation = Quaternion.Euler(45f, -90f, 0f);
+        used += setter;
+        if (used == 3)
+        {
+            moving.transform.localRotation = Quaternion.Euler(45f, -90f, 0f);
+        }
     }
 
     protected override void Interact()
@@ -40,7 +43,7 @@ public class Lever : Interactable
         {
             StartCoroutine(SteampunkCutScene());
         }
-        else if (used == 2)
+        else if (used == 3)
         {
             used = -1;
             //Start Gears, tesla, announcer and move laby

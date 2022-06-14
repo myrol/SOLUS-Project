@@ -20,9 +20,6 @@ public class place2 : Interactable
         {
             gear2.SetActive(true);
             gear2_UI.SetActive(false);
-        }
-        if (gear11_UI.activeSelf)
-        {
             lever.GetComponent<Lever>().setUsed(2);
         }
     }

@@ -20,10 +20,7 @@ public class place11 : Interactable
         {
             gear11.SetActive(true);
             gear11_UI.SetActive(false);
-        }
-        if (true)
-        {
-            lever.GetComponent<Lever>().setUsed(2);
+            lever.GetComponent<Lever>().setUsed(1);
         }
     }
 }
