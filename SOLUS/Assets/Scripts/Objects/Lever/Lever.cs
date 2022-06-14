@@ -75,8 +75,8 @@ public class Lever : Interactable
         float elapsed = 0.0f;
         while (elapsed < 2.0f)
         {
-            player.transform.Rotate(0.0f, -0.18f * elapsed, 0.0f, Space.Self);
-            camera.transform.Rotate(-0.03f * elapsed, 0.0f, 0.0f, Space.Self);
+            player.transform.Rotate(0.0f, -0.37f, 0.0f, Space.Self);
+            camera.transform.Rotate(-0.05f, 0.0f, 0.0f, Space.Self);
             player.transform.position = player.transform.position + new Vector3(0.007f, 0f, -0.007f);
             elapsed += Time.deltaTime;
             yield return null;
