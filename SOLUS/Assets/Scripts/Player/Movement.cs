@@ -25,8 +25,8 @@ public class Movement : MonoBehaviour
     private float jumpheight = 0.5f;
 
     //Variablen für Ducken
-    private float crouchingSpeed = 3f;
-    private float standingSpeed = 7f;
+    [SerializeField] private float crouchingSpeed = 2.5f;
+    [SerializeField] private float standingSpeed = 4f;
     private float crouchHeight = 1f;
     private float standingHeight = 2f;
 

@@ -18,10 +18,12 @@ public class Carryable : MonoBehaviour      //Abstrakt damit man es für verschie
     {
         rb.useGravity = false;
         rb.drag = 15;
+        rb.angularDrag = 5;
     }
     public void Drop()
     {
         rb.drag = 1;
+        rb.angularDrag = 1;
         rb.useGravity = true;
     }
 
