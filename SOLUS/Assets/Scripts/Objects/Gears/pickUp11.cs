@@ -5,6 +5,7 @@ public class pickUp11 : Interactable
     private GameObject gear11;
     private GameObject gear11_UI;
     private GameObject lever;
+    public AudioClip pickUp;
 
     private void Start()
     {
@@ -21,6 +22,8 @@ public class pickUp11 : Interactable
             gear11.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             gear11.SetActive(false);
             gear11_UI.SetActive(true);
+            AudioSource source = gear11_UI.GetComponent<AudioSource>();
+            source.PlayOneShot(pickUp, 1f);
         }
     }
 }

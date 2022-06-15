@@ -51,12 +51,40 @@ public class Lever : Interactable
                 GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().addProgress();
             }
         }
+        else
+        {
+            StartCoroutine(leverFail());
+        }
+    }
+    private IEnumerator leverFail()
+    {
+        float elapsed = 0.0f;
+        float direction = -1f;
+        while (elapsed < 180f)
+        {
+            moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
+            elapsed += 0.5f;
+            if (direction == -1f && elapsed >= 90f)
+            {
+                direction = 1f;
+            }
+            yield return null;
+        }
+        moving.transform.localRotation = Quaternion.Euler(45f, -90f, 0f);
+        yield return null;
     }
 
     private IEnumerator ElectricCutScene()
     {
         //Start Gears, tesla, announcer and move laby
-        moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
+        float elapsed = 0.0f;
+        float direction = -1f;
+        while (elapsed < 90f)
+        {
+            moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
+            elapsed += 0.5f;
+            yield return null;
+        }
         StartCoroutine(gears.GetComponent<turnGears>().turner());
 
         Vector3 originalPlayerPos = player.transform.position;
@@ -69,18 +97,20 @@ public class Lever : Interactable
         camera.GetComponent<CameraMovement>().enabled = false;
         player.GetComponent<Movement>().enabled = false;
         crosshair.SetActive(false);
+        moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
 
         yield return new WaitForSeconds(7);
         //turn Camera to tesla
-        float elapsed = 0.0f;
+        elapsed = 0.0f;
         while (elapsed < 2.0f)
         {
-            player.transform.Rotate(0.0f, -0.37f, 0.0f, Space.Self);
+            player.transform.Rotate(0.0f, -0.34f, 0.0f, Space.Self);
             camera.transform.Rotate(-0.05f, 0.0f, 0.0f, Space.Self);
             player.transform.position = player.transform.position + new Vector3(0.007f, 0f, -0.007f);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        player.transform.localRotation = Quaternion.Euler(player.transform.localRotation.x, 223.5f, player.transform.localRotation.z);
 
         yield return new WaitForSeconds(4);
 
@@ -92,12 +122,27 @@ public class Lever : Interactable
         player.transform.position = originalPlayerPos;
 
         used = -1;
+
+        AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
+        audioSource.Stop();
+        audioSource = GameObject.Find("Steam_Player").GetComponent<AudioSource>();
+        audioSource.Stop();
+        audioSource = GameObject.Find("Water_Player_2").GetComponent<AudioSource>();
+        audioSource.Play();
+        audioSource.volume = 0.1f;
         yield return null;
     }
 
     private IEnumerator ExplodeCutScene()
     {
-        moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
+        float elapsed = 0.0f;
+        float direction = -1f;
+        while (elapsed < 90f)
+        {
+            moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
+            elapsed += 0.5f;
+            yield return null;
+        }
 
         Vector3 originalPlayerPos = player.transform.position;
         Vector3 originalPlayRot = player.transform.localEulerAngles;
@@ -110,6 +155,7 @@ public class Lever : Interactable
         camera.GetComponent<CameraMovement>().enabled = false;
         player.GetComponent<Movement>().enabled = false;
         crosshair.SetActive(false);
+        moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
 
         //Start gears
         StartCoroutine(gears.GetComponent<turnGears>().Explode());
