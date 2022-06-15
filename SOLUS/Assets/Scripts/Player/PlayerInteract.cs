@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public GameObject cam;
-    private float distance = 2.5f;
-    public LayerMask mask;
+    [SerializeField] private GameObject cam;
+    [SerializeField] private float distance = 2.5f;
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            castRay();
+        }
+    }
+
+    void castRay()
+    {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, distance, mask))
+        if (Physics.Raycast(ray, out hit, distance))
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if (hit.collider.gameObject.layer == 7) // Interactables
             {
+                Debug.Log("Hit Interactable");
                 hit.collider.GetComponent<Interactable>().BaseInteract();
-                // Debug.Log(hit.collider.GetComponent<Interactable>().message);
             }
         }
     }
