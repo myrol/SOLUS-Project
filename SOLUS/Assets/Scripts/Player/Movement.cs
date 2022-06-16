@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     //Variablen für Bewegung
     public CharacterController controller;
+    private bool moving = false;
     private float speed = 7f;
     private Vector3 velocity;
     private Vector2 currentInputVector;
@@ -46,6 +47,11 @@ public class Movement : MonoBehaviour
 
         currentInputVector = new Vector2(x, z);
 
+        if (currentInputVector.magnitude > 0) moving = true;
+        else moving = false;
+
+        StartCoroutine(playFootsteps());
+
         Vector3 move = (transform.right * currentInputVector.x + transform.forward * currentInputVector.y).normalized;
         //Spieler Bewegung
         if (isGrounded) {
@@ -74,5 +80,14 @@ public class Movement : MonoBehaviour
         //Spieler Bewegung in der Luft
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private IEnumerator playFootsteps()
+    {
+        while (moving)
+        {
+            SoundManager.Instance.playFootsteps();
+            yield return new WaitForSeconds(1);
+        }
     }
 }

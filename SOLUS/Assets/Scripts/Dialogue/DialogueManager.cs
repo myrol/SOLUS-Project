@@ -46,20 +46,23 @@ public class DialogueManager : MonoBehaviour
     public void Awake()
     {
         // Singleton (Es gibt nur eine Instanz von dieser Klasse)
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Destroy(Instance);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        Instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
 
         // Fuer den Reverb
         audio = gameObject.AddComponent<AudioSource>();
         AudioReverbZone arz = gameObject.AddComponent<AudioReverbZone>();
 
         arz.reverbPreset = AudioReverbPreset.Room;
-        arz.minDistance = 45f;
-        arz.maxDistance = 45f;
+        arz.minDistance = 250f;
+        arz.maxDistance = 250f;
 
         queue = new Queue<AudioClip>();
     }
