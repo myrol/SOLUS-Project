@@ -141,6 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7633796530770849596}
   - component: {fileID: 1802253840774377229}
+  - component: {fileID: 1829104069906703577}
   m_Layer: 0
   m_Name: Dropper
   m_TagString: Untagged
@@ -180,6 +181,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprint: {fileID: 4169706033933946441, guid: 06baf9294e04ec0419dedf833da2c9d6, type: 3}
   spawn: {fileID: 7153290071775912261}
+  upwardForce: 500
+--- !u!114 &1829104069906703577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114387596612269446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b55ab38552d6b46a7913dc4b448449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 975473213400710664}
+  color: 0
 --- !u!1 &7153290071775912258
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +288,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7baea3adcf164c640ad44359b76f6fab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -377,8 +393,44 @@ PrefabInstance:
       propertyPath: eve.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2938842334078456952, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2c7478d59d18b941921db2944eeb08c, type: 2}
+    - target: {fileID: 6110672557978280669, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7baea3adcf164c640ad44359b76f6fab, type: 2}
+    - target: {fileID: 7250761331412934706, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7baea3adcf164c640ad44359b76f6fab, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}
+--- !u!23 &2406398729682620243 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8101568201537995186, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}
+  m_PrefabInstance: {fileID: 5839958978610253537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4943136346575355866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1554375116506853691, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}
+  m_PrefabInstance: {fileID: 5839958978610253537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7531658269016298174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943136346575355866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b55ab38552d6b46a7913dc4b448449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 2406398729682620243}
+  color: 0
 --- !u!4 &5751761918608172384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2223070958932503425, guid: a6c480c963d59b049bb9393cfc36618d, type: 3}

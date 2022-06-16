@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8134109345345256793}
   - component: {fileID: 3898506361814557896}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,9 +125,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4071136049642540520}
   - component: {fileID: 5932470008942420595}
-  - component: {fileID: 314274561633310094}
   - component: {fileID: 2677839445017369661}
   - component: {fileID: 8098600730347775413}
+  - component: {fileID: 1644999503057298097}
+  - component: {fileID: 2334664246028543431}
   m_Layer: 8
   m_Name: Collider
   m_TagString: Cube
@@ -159,22 +160,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910684010511776285}
   m_Mesh: {fileID: 0}
---- !u!114 &314274561633310094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4910684010511776285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8b7170a6d688d4182c0d6b279b0585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickedUp: 0
-  carryPosition: {fileID: 0}
-  meshRenderer: {fileID: 7107352753332146198}
-  color: 3
 --- !u!65 &2677839445017369661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -204,6 +189,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1644999503057298097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910684010511776285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b55ab38552d6b46a7913dc4b448449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7107352753332146198}
+  color: 0
+--- !u!114 &2334664246028543431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910684010511776285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8b7170a6d688d4182c0d6b279b0585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUp: 0
 --- !u!1 &5864612408610110344
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +261,7 @@ GameObject:
   - component: {fileID: 1703607813506174153}
   - component: {fileID: 7107352753332146198}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Rim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

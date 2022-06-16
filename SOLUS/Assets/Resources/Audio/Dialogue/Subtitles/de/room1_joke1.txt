@@ -1,2 +1,1 @@
 000.300|<b>Announcer</b>: Außerdem weisen wir Sie hiermit darauf hin, dass das Konsumieren von jeglicher Nahrung in allen Bereichen der Test Umgebung strengstens untersagt ist.
-000.001|<trigger>SlidingDoor1_2-close-

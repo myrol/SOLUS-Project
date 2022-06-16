@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     //Variablen für Bewegung
     public CharacterController controller;
     private bool moving = false;
+    private bool footstepsPlaying = false;
     private float speed = 7f;
     private Vector3 velocity;
     private Vector2 currentInputVector;
@@ -50,7 +51,7 @@ public class Movement : MonoBehaviour
         if (currentInputVector.magnitude > 0) moving = true;
         else moving = false;
 
-        StartCoroutine(playFootsteps());
+        if (isGrounded && moving && !footstepsPlaying) StartCoroutine(playFootsteps()); // AUDIO
 
         Vector3 move = (transform.right * currentInputVector.x + transform.forward * currentInputVector.y).normalized;
         //Spieler Bewegung
@@ -66,6 +67,8 @@ public class Movement : MonoBehaviour
         {
             velocity = new Vector3(0f, Mathf.Sqrt(jumpheight * (-2f) * gravity), 0f);
             velocity += move * speed * jumpThrust;
+
+            StartCoroutine(playLiftOff()); // AUDIO
         }
 
         //Wenn LStrg gedrückt wird, duckt sich der Spieler
@@ -84,10 +87,18 @@ public class Movement : MonoBehaviour
 
     private IEnumerator playFootsteps()
     {
-        while (moving)
-        {
-            SoundManager.Instance.playFootsteps();
-            yield return new WaitForSeconds(1);
-        }
+        footstepsPlaying = true;
+
+        SoundManager.Instance.playRandom(SoundManager.Instance.player_footsteps);
+        yield return new WaitForSeconds(.4f);
+
+        footstepsPlaying = false;
+    }
+
+    private IEnumerator playLiftOff()
+    {
+        SoundManager.Instance.playRandom(SoundManager.Instance.player_liftOff);
+
+        yield return null;
     }
 }

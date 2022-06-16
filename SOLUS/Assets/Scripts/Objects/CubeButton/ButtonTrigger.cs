@@ -8,11 +8,6 @@ public class ButtonTrigger : MonoBehaviour
     [SerializeField]
     private MeshRenderer buttonMesh;
 
-    private const byte BLACK = 0;
-    private const byte BLUE = 1;
-    private const byte GREEN = 2;
-    private const byte RED = 3;
-
     private const string MATERIAL_PATH = "Materials/Room1/Button/";
 
     private List<Collider> cubesOnButton;
@@ -57,11 +52,11 @@ public class ButtonTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Cube c = other.gameObject.GetComponent<Cube>();
+        Colorable c = other.gameObject.GetComponent<Colorable>();
         if (c == null && other.tag != "Player") return;
 
         // If it's the player or the color of the cube matches
-        if(other.tag == "Player" || c.color == BLACK || c.color == color )
+        if(other.tag == "Player" || c.color == GameAssets.COLOR_BLACK || c.color == color )
         {
             cubesOnButton.Add(other);
 

@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 1644999503057298097, guid: bb94bf2738937074cab118e396074754, type: 3}
+      propertyPath: color
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8340116322844678010, guid: bb94bf2738937074cab118e396074754, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -6,8 +6,14 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    [SerializeField, Range(0,1)] private float sfx_volume = 1f;
+    [SerializeField, Range(0,1)] private float music_volume = 1f;
     [SerializeField] private AudioSource sfx, music;
-    [SerializeField] private List<AudioClip> footsteps;
+
+    // Player movement
+    public List<AudioClip> player_footsteps;
+    public List<AudioClip> player_liftOff;
+    public List<AudioClip> player_jumping;
 
     void Awake()
     {
@@ -22,9 +28,15 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void playFootsteps()
+    private void Update()
     {
-        sfx.PlayOneShot(footsteps[Random.Range(0, footsteps.Count)]);
+        sfx.volume = sfx_volume;
+        music.volume = music_volume;
+    }
+
+    public void playRandom(List<AudioClip> list)
+    {
+        sfx.PlayOneShot( list[Random.Range(0, list.Count)] );
     }
 
     public void playSFX(AudioClip clip)
@@ -34,7 +46,7 @@ public class SoundManager : MonoBehaviour
 
     public void playMusic(AudioClip clip)
     {
-        music.clip = clip;
+         music.clip = clip;
         music.Play();
     }
 }
