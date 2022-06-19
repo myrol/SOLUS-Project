@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private bool openOtherWay = false;
 
-    private bool canOpen = false;
     private float animationDuration = 3f;
     public void open()
     {

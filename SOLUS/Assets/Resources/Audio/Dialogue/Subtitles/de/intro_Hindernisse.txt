@@ -1,2 +1,1 @@
 000.179|<b>Announcer</b>: Um die kommenden anspruchsvollen physischen Übungen zu bewältigen, sollten Sie üben, Hindernisse zu überwinden.
-001.000|<trigger>DoorPivot2-open-
