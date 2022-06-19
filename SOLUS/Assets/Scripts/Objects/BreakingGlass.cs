@@ -7,6 +7,7 @@ public class BreakingGlass : MonoBehaviour
     [SerializeField] private GameObject nonBrokenGlass;
     [SerializeField] private GameObject glassObj;
     [SerializeField] private float breakingForce = 50f;
+    [SerializeField] private AudioSource audio;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class BreakingGlass : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(new Vector3(breakingForce, 0, 0));
         }
+
+        SoundManager.Instance.playSFX(audio);
 
         Destroy(gameObject);
     }
