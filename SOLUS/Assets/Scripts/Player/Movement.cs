@@ -17,12 +17,13 @@ public class Movement : MonoBehaviour
     //Variablen fürs Fallen
     private float gravity = -11f;
     public Transform groundCheck;
-    private float distance = 0.1f;
+    private float x_dist = 0.45f;
+    private float y_dist = 0.1f;
     public LayerMask groundMask;
     private bool isGrounded;
 
     //Variablen fürs Springen
-    private float jumpTrajectoryControl = .5f; // % inwiefern der Spieler kontroller in der Luft hat
+    private float jumpTrajectoryControl = 2f; // % inwiefern der Spieler kontroller in der Luft hat
     private float jumpThrust = .8f; // % vom movement speed
     private float jumpheight = 0.5f;
 
@@ -35,7 +36,13 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //Checkt ob der Spieler auf dem Boden ist
-        isGrounded = Physics.CheckSphere(groundCheck.position, distance, groundMask);
+        //isGrounded = Physics.CheckSphere(groundCheck.position, distance, groundMask);
+        isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(x_dist, y_dist, x_dist), Quaternion.identity , groundMask);
+        Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(x_dist, 0, 0));
+        Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(-x_dist, 0, 0));
+        Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, 0, x_dist));
+        Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, 0, -x_dist));
+        Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, -y_dist, 0));
 
         //Wenn Spieler auf dem Boden, wird die Fallgeschwindigkeit reduziert
         if (isGrounded && velocity.y < 0)
@@ -58,8 +65,13 @@ public class Movement : MonoBehaviour
         if (isGrounded) {
             controller.Move(move * speed * Time.deltaTime);
         } else {
-            //velocity += (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
-            controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
+            float hor_speed = new Vector3(velocity.x, 0, velocity.z).magnitude;
+            Debug.Log(hor_speed);
+            if (hor_speed < 6f)
+            {
+                velocity += ((1/(hor_speed+1f)) * 2.25f) * (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
+            }
+            //controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
         }
 
         //Wenn Leertaste gedrückt wird, springt der Spieler
