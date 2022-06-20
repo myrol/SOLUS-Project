@@ -5,7 +5,7 @@ using UnityEngine;
 public class Startup : MonoBehaviour
 {
 
-    public int reset;
+    public bool reset;
     public GameObject player;
     public GameObject crosshair;
     public GameObject trigger_2;
@@ -18,7 +18,7 @@ public class Startup : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;   //Locked die Maus am Anfang des Spiels
 
-        if (reset == 1)
+        if (reset)
         {
             GameObject.Find("lever").GetComponent<Lever>().used = 0;
             GameObject.Find("Room 0").GetComponent<SteampunkStoryHolder>().progress = 0;
