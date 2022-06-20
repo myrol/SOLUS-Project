@@ -66,7 +66,7 @@ public class Movement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
         } else {
             float hor_speed = new Vector3(velocity.x, 0, velocity.z).magnitude;
-            Debug.Log(hor_speed);
+            //Debug.Log(hor_speed);
             if (hor_speed < 6f)
             {
                 velocity += ((1/(hor_speed+1f)) * 2.25f) * (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);

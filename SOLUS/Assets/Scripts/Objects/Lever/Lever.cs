@@ -14,9 +14,13 @@ public class Lever : Interactable
     private GameObject gears;
 
     public int used;
+    public AudioClip downAudio;
+    public AudioClip upAudio;
+    private AudioSource source;
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         camera = GameObject.Find("Camera");
         player = GameObject.Find("PlayerCapsule");
         crosshair = GameObject.Find("crosshair");
@@ -28,11 +32,13 @@ public class Lever : Interactable
     {
         return used;
     }
+
     public void setUsed(int setter)
     {
         used += setter;
         if (used == 3)
         {
+            source.PlayOneShot(upAudio, 1f);
             moving.transform.localRotation = Quaternion.Euler(45f, -90f, 0f);
         }
     }
@@ -51,7 +57,7 @@ public class Lever : Interactable
                 GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().addProgress();
             }
         }
-        else
+        else if (moving.transform.localRotation.x == 45f)
         {
             StartCoroutine(leverFail());
         }
@@ -60,12 +66,14 @@ public class Lever : Interactable
     {
         float elapsed = 0.0f;
         float direction = -1f;
+        source.PlayOneShot(downAudio, 1f);
         while (elapsed < 180f)
         {
             moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
             elapsed += 0.5f;
             if (direction == -1f && elapsed >= 90f)
             {
+                source.PlayOneShot(upAudio, 1f);
                 direction = 1f;
             }
             yield return null;
@@ -79,6 +87,7 @@ public class Lever : Interactable
         //Start Gears, tesla, announcer and move laby
         float elapsed = 0.0f;
         float direction = -1f;
+        source.PlayOneShot(downAudio, 1f);
         while (elapsed < 90f)
         {
             moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
@@ -137,6 +146,7 @@ public class Lever : Interactable
     {
         float elapsed = 0.0f;
         float direction = -1f;
+        source.PlayOneShot(downAudio, 1f);
         while (elapsed < 90f)
         {
             moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
