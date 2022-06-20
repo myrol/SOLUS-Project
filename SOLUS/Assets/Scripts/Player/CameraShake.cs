@@ -5,11 +5,10 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
 #pragma warning disable CS0108
-    private GameObject cameraShaking;
+    public GameObject cameraShaking;
 #pragma warning restore CS0108
     public IEnumerator Shake (float duration, float power)
     {
-        cameraShaking = GameObject.Find("PlayerCapsule");
         Vector3 originalPos = cameraShaking.transform.localPosition;
 
         float elapsed = 0.0f;

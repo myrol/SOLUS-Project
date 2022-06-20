@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Startup : MonoBehaviour
 {
-#pragma warning disable CS0108
-    private GameObject camera;
-#pragma warning restore CS0108
 
     public int reset;
-    private GameObject player;
-    private GameObject crosshair;
-    private GameObject trigger_2;
+    public GameObject player;
+    public GameObject crosshair;
+    public GameObject trigger_2;
+
+#pragma warning disable CS0108
+    public GameObject camera;
+#pragma warning restore CS0108
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;   //Locked die Maus am Anfang des Spiels
-        camera = GameObject.Find("Camera");
-        player = GameObject.Find("PlayerCapsule");
-        crosshair = GameObject.Find("crosshair");
-        trigger_2 = GameObject.Find("intro_2");
 
         if (reset == 1)
         {
+            GameObject.Find("lever").GetComponent<Lever>().used = 0;
+            GameObject.Find("Room 0").GetComponent<SteampunkStoryHolder>().progress = 0;
             trigger_2.SetActive(false);
 
             Debug.Log("Startup");
@@ -54,7 +53,7 @@ public class Startup : MonoBehaviour
             yield return null;
         }
         player.transform.position = new Vector3(16.7f, 17.85f, -22.2f);
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(18);
 
         camera.GetComponent<CameraMovement>().enabled = true;
         crosshair.SetActive(true);
@@ -69,7 +68,7 @@ public class Startup : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(15.5f);
+        yield return new WaitForSeconds(16f);
         player.GetComponent<Movement>().enabled = true;
 
         yield return null;

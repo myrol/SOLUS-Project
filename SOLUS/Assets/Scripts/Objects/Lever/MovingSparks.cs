@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class MovingSparks : MonoBehaviour
 {
-    GameObject Pos_transmission1, Pos_transmission2, Pos_transmission3, Pos_transmission4;
+    public GameObject Pos_transmission1, Pos_transmission2, Pos_transmission3, Pos_transmission4;
     Vector3 originalSparkPos;
 
     private void Start()
     {
-        Pos_transmission1 = GameObject.Find("Pos_transmission1");
-        Pos_transmission2 = GameObject.Find("Pos_transmission2");
-        Pos_transmission3 = GameObject.Find("Pos_transmission3");
-        Pos_transmission4 = GameObject.Find("Pos_transmission4");
         originalSparkPos = Pos_transmission1.transform.localPosition;
     }
 

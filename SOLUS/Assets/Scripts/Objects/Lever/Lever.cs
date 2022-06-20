@@ -3,17 +3,22 @@ using UnityEngine;
 
 public class Lever : Interactable
 {
+    public int used;
 
 #pragma warning disable CS0108
-    private GameObject camera;
+    public GameObject camera;
 #pragma warning restore CS0108
 
-    private GameObject moving;
-    private GameObject player;
-    private GameObject crosshair;
-    private GameObject gears;
+    public GameObject moving;
+    public GameObject crosshair;
+    public GameObject gears;
+    public GameObject room_0;
+    public GameObject player;
+    public GameObject cutScenePos;
+    public GameObject endScenePos;
+    private Quaternion playerEndRot;
+    private Quaternion camEndRot;
 
-    public int used;
     public AudioClip downAudio;
     public AudioClip upAudio;
     private AudioSource source;
@@ -21,11 +26,6 @@ public class Lever : Interactable
     private void Start()
     {
         source = GetComponent<AudioSource>();
-        camera = GameObject.Find("Camera");
-        player = GameObject.Find("PlayerCapsule");
-        crosshair = GameObject.Find("crosshair");
-        gears = GameObject.Find("Gears");
-        moving = GameObject.Find("moving");
     }
 
     public int getUsed()
@@ -45,7 +45,7 @@ public class Lever : Interactable
 
     protected override void Interact()
     {
-        if (GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().getProgress() == 2)
+        if (room_0.GetComponent<SteampunkStoryHolder>().getProgress() == 2)
         {
             if (used == 0)
             {
@@ -54,10 +54,10 @@ public class Lever : Interactable
             else if (used == 3)
             {
                 StartCoroutine(ElectricCutScene());
-                GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().addProgress();
+                room_0.GetComponent<SteampunkStoryHolder>().addProgress();
             }
         }
-        else if (moving.transform.localRotation.x == 45f)
+        else if (moving.transform.eulerAngles.x == 315f)
         {
             StartCoroutine(leverFail());
         }
@@ -94,13 +94,15 @@ public class Lever : Interactable
             elapsed += 0.5f;
             yield return null;
         }
+
+        endScenePos.transform.position = player.transform.position;
+        playerEndRot = player.transform.localRotation;
+        camEndRot = camera.transform.localRotation;
+
         StartCoroutine(gears.GetComponent<turnGears>().turner());
 
-        Vector3 originalPlayerPos = player.transform.position;
-        Vector3 originalPlayRot = player.transform.localEulerAngles;
-        Vector3 originalCamRot = camera.transform.localEulerAngles;
         //Disable Camera- and Player-movement and Cursor
-        player.transform.position = new Vector3(50.56f, 0.09f, 27.61f);
+        player.transform.position = cutScenePos.transform.position;
         player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         camera.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         camera.GetComponent<CameraMovement>().enabled = false;
@@ -111,24 +113,33 @@ public class Lever : Interactable
         yield return new WaitForSeconds(7);
         //turn Camera to tesla
         elapsed = 0.0f;
-        while (elapsed < 2.0f)
+        while (elapsed < 2.5f)
         {
-            player.transform.Rotate(0.0f, -0.34f, 0.0f, Space.Self);
-            camera.transform.Rotate(-0.05f, 0.0f, 0.0f, Space.Self);
-            player.transform.position = player.transform.position + new Vector3(0.007f, 0f, -0.007f);
+            if (player.transform.rotation.y >= -0.9019078)
+            {
+                player.transform.Rotate(0.0f, -0.38f, 0.0f, Space.Self);
+            }
+            if (camera.transform.rotation.x >= -0.06365685)
+            {
+                camera.transform.Rotate(-0.06f, 0.0f, 0.0f, Space.Self);
+            }
+            if (player.transform.position.x < 49.9118f && player.transform.position.z > -20.6618f)
+            {
+                player.transform.position = player.transform.position + new Vector3(0.008f, 0f, -0.008f);
+            }
             elapsed += Time.deltaTime;
             yield return null;
         }
-        player.transform.localRotation = Quaternion.Euler(player.transform.localRotation.x, 223.5f, player.transform.localRotation.z);
 
         yield return new WaitForSeconds(4);
 
-        player.transform.localRotation = Quaternion.Euler(originalPlayRot);
-        camera.transform.localRotation = Quaternion.Euler(originalCamRot);
         camera.GetComponent<CameraMovement>().enabled = true;
         player.GetComponent<Movement>().enabled = true;
         crosshair.SetActive(true);
-        player.transform.position = originalPlayerPos;
+        yield return new WaitForSeconds(0.1f);
+        player.transform.localRotation = playerEndRot;
+        camera.transform.localRotation = camEndRot;
+        player.transform.position = endScenePos.transform.position;
 
         used = -1;
 
@@ -154,12 +165,12 @@ public class Lever : Interactable
             yield return null;
         }
 
-        Vector3 originalPlayerPos = player.transform.position;
-        Vector3 originalPlayRot = player.transform.localEulerAngles;
-        Vector3 originalCamRot = camera.transform.localEulerAngles;
+        endScenePos.transform.position = player.transform.position;
+        playerEndRot = player.transform.localRotation;
+        camEndRot = camera.transform.localRotation;
 
         //Disable Camera- and Player-movement and Cursor
-        player.transform.position = new Vector3(50.56f, 0.09f, 27.61f);
+        player.transform.position = cutScenePos.transform.position;
         player.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         camera.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         camera.GetComponent<CameraMovement>().enabled = false;
@@ -175,12 +186,12 @@ public class Lever : Interactable
 
         yield return new WaitForSeconds(2);
 
-        player.transform.localRotation = Quaternion.Euler(originalPlayRot);
-        camera.transform.localRotation = Quaternion.Euler(originalCamRot);
         camera.GetComponent<CameraMovement>().enabled = true;
         player.GetComponent<Movement>().enabled = true;
         crosshair.SetActive(true);
-        player.transform.position = originalPlayerPos;
+        player.transform.localRotation = playerEndRot;
+        camera.transform.localRotation = camEndRot;
+        player.transform.position = endScenePos.transform.position;
         used = 1;
         yield return null;
     }

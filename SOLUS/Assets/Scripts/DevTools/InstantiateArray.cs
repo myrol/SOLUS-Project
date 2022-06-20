@@ -5,7 +5,9 @@ using UnityEngine;
 public class InstantiateArray : MonoBehaviour
 {
     [SerializeField] private GameObject model;
+#pragma warning disable CS0108
     [SerializeField] private GameObject light;
+#pragma warning restore CS0108
     [SerializeField] private int count_x, count_z;
     [SerializeField] private Transform _start, _end;
 

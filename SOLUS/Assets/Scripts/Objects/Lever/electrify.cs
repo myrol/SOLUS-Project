@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class electrify : MonoBehaviour
 {
-    private GameObject electric_arc;
-    private GameObject seekers;
+    public GameObject electric_arc;
+    public GameObject seekers;
 
     private void Start()
     {
-        electric_arc = GameObject.Find("electric_arc");
-        seekers = GameObject.Find("Seekers");
         electric_arc.SetActive(false);
     }
 

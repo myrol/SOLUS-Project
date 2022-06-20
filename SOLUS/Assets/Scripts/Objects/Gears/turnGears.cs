@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class turnGears : MonoBehaviour
 {
-    private GameObject gear11; // -> 32
-    private GameObject gear2;  // -> 12
-    private GameObject gear8;  // -> 28
-    private GameObject gear1;  // -> 12
-    private GameObject tesla;
-    private GameObject sparks_2;
-    private GameObject sparks_3;
-    private GameObject machine_group;
+    public GameObject gear11; // -> 32
+    public GameObject gear2;  // -> 12
+    public GameObject gear8;  // -> 28
+    public GameObject gear1;  // -> 12
+    public GameObject tesla;
+    public GameObject sparks_2;
+    public GameObject sparks_3;
+    public GameObject machine_group;
+    public GameObject turbine;
+
     public AudioClip explosionAudio;
     public AudioClip dropAudio;
     public AudioClip CutSceneAudio;
@@ -28,21 +30,13 @@ public class turnGears : MonoBehaviour
 
     private void Start()
     {
-        gear11 = GameObject.Find("gear11");
-        gear2 = GameObject.Find("gear2");
-        gear8 = GameObject.Find("gear8");
-        gear1 = GameObject.Find("gear1");
-        tesla = GameObject.Find("tesla");
-        machine_group = GameObject.Find("machine_group");
-        sparks_2 = GameObject.Find("sparks_2");
-        sparks_3 = GameObject.Find("sparks_3");
         sparks_2.SetActive(false);
         sparks_3.SetActive(false);
     }
 
     public IEnumerator turner()
     {
-        AudioSource audioSource = GameObject.Find("turbine").GetComponent<AudioSource>();
+        AudioSource audioSource = turbine.GetComponent<AudioSource>();
         audioSource.volume = 1f;
         audioSource.PlayOneShot(CutSceneAudio, 1f);
         float elapsed = 0.0f;
@@ -154,7 +148,7 @@ public class turnGears : MonoBehaviour
     public IEnumerator Explode()
     {
 
-        AudioSource audioSource = GameObject.Find("turbine").GetComponent<AudioSource>();
+        AudioSource audioSource = turbine.GetComponent<AudioSource>();
         audioSource.volume = 0.7f;
         audioSource.PlayOneShot(explosionAudio, 1f);
         float elapsed = 0.0f;
