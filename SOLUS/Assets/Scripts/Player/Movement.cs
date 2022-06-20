@@ -11,14 +11,12 @@ public class Movement : MonoBehaviour
     private float speed = 7f;
     private Vector3 velocity;
     private Vector2 currentInputVector;
-    private Vector2 smoothInputVelocity;
-    private float smoothInputSpeed = .2f;
 
     //Variablen fürs Fallen
     private float gravity = -11f;
     public Transform groundCheck;
-    private float x_dist = 0.45f;
-    private float y_dist = 0.1f;
+    private float x_dist = 0.375f;
+    private float y_dist = 0.05f;
     public LayerMask groundMask;
     private bool isGrounded;
 
@@ -37,7 +35,7 @@ public class Movement : MonoBehaviour
     {
         //Checkt ob der Spieler auf dem Boden ist
         //isGrounded = Physics.CheckSphere(groundCheck.position, distance, groundMask);
-        isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(x_dist, y_dist, x_dist), Quaternion.identity , groundMask);
+        isGrounded = Physics.CheckBox(groundCheck.position + new Vector3(0, y_dist/2, 0), new Vector3(x_dist, y_dist, x_dist), Quaternion.identity , groundMask);
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(x_dist, 0, 0));
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(-x_dist, 0, 0));
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, 0, x_dist));
@@ -66,7 +64,6 @@ public class Movement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
         } else {
             float hor_speed = new Vector3(velocity.x, 0, velocity.z).magnitude;
-            //Debug.Log(hor_speed);
             if (hor_speed < 6f)
             {
                 velocity += ((1/(hor_speed+1f)) * 2.25f) * (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);

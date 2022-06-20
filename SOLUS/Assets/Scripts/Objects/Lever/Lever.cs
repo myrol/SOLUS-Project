@@ -3,27 +3,18 @@ using UnityEngine;
 
 public class Lever : Interactable
 {
-    public int used;
+    [SerializeField] public int used;
 
 #pragma warning disable CS0108
-    public GameObject camera;
+    [SerializeField] private GameObject camera, moving, crosshair, gears, room_0, player, cutScenePos, endScenePos;
 #pragma warning restore CS0108
-
-    public GameObject moving;
-    public GameObject crosshair;
-    public GameObject gears;
-    public GameObject room_0;
-    public GameObject player;
-    public GameObject cutScenePos;
-    public GameObject endScenePos;
     private Quaternion playerEndRot;
     private Quaternion camEndRot;
 
-    public AudioClip downAudio;
-    public AudioClip upAudio;
+    [SerializeField] private AudioClip upAudio, downAudio;
     private AudioSource source;
 
-    private void Start()
+    private void Awake()
     {
         source = GetComponent<AudioSource>();
     }

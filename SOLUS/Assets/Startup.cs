@@ -5,13 +5,9 @@ using UnityEngine;
 public class Startup : MonoBehaviour
 {
 
-    public bool reset;
-    public GameObject player;
-    public GameObject crosshair;
-    public GameObject trigger_2;
-
+    [SerializeField] private bool reset;
 #pragma warning disable CS0108
-    public GameObject camera;
+    [SerializeField] private GameObject player, crosshair, trigger_2, camera;
 #pragma warning restore CS0108
 
     void Start()
@@ -20,8 +16,6 @@ public class Startup : MonoBehaviour
 
         if (reset)
         {
-            GameObject.Find("lever").GetComponent<Lever>().used = 0;
-            GameObject.Find("Room 0").GetComponent<SteampunkStoryHolder>().progress = 0;
             trigger_2.SetActive(false);
 
             Debug.Log("Startup");
