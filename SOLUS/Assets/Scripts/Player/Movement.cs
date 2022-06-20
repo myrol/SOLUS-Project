@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
         //Wenn Spieler auf dem Boden, wird die Fallgeschwindigkeit reduziert
         if (isGrounded && velocity.y < 0)
         {
-            velocity = new Vector3(0f, -2f, 0f);
+            velocity = new Vector3(0f, -5f, 0f);
         }
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -66,7 +66,7 @@ public class Movement : MonoBehaviour
             float hor_speed = new Vector3(velocity.x, 0, velocity.z).magnitude;
             if (hor_speed < 6f)
             {
-                velocity += ((1/(hor_speed+1f)) * 2.25f) * (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
+                velocity += ((1/(hor_speed+0.85f)) * 2.25f) * (move * speed * Time.deltaTime * jumpTrajectoryControl * 3f);
             }
             //controller.Move(move * speed * Time.deltaTime * jumpTrajectoryControl);
         }
