@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 5f42a7a2d6d8b0c4dacda3110481a4d9, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Seeker
