@@ -214,7 +214,7 @@ public class turnGears : MonoBehaviour
         gear11.transform.localRotation = Quaternion.Euler(82.2f, 90f, 90f);
         gear11.transform.localPosition = new Vector3(71.641f, 5.233f, 34.754f);
         gear2.transform.localRotation = Quaternion.Euler(-45f, 45f, 0f);
-        gear2.transform.localPosition = new Vector3(-23.007f, 0.439f, 33.313f);
+        gear2.transform.localPosition = new Vector3(0.458f, 0.439f, 23.282f);
         yield return null;
     }
 }

@@ -15,5 +15,5 @@ public class StoryHolder : MonoBehaviour
     public int getSteampunk() { return steampunk; }
     public int getSteampunkFurnace() { return steampunk_furnace; }
     public int getSteampunkValve() { return steampunk_valve; }
-    public int getSteampunkLever() { return steampunk; }
+    public int getSteampunkLever() { return steampunk_lever; }
 }
