@@ -17,7 +17,7 @@ public class DecalSprayer : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, GameAssets.RAYCAST_DISTANCE))
             {
-                if (hit.collider.gameObject.layer == 6)
+                if (hit.collider.gameObject.tag == "Sprayable")
                 {
                     if (clone != null) Destroy(clone);
                     clone = Instantiate(decal, hit.point, Quaternion.LookRotation(hit.normal));
