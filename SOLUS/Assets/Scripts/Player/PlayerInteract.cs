@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private GameObject cam;
-    [SerializeField] private float distance = 2.5f;
     private Carryable item;
 
     void Update()
@@ -29,9 +28,8 @@ public class PlayerInteract : MonoBehaviour
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, distance))
+        if (Physics.Raycast(ray, out hit, GameAssets.RAYCAST_DISTANCE))
         {
-            Debug.Log("Hit " + hit.collider.name);
             int objLayer = hit.collider.gameObject.layer;
             if (objLayer == 7) // Interactables
             {

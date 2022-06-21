@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
     {
         //Checkt ob der Spieler auf dem Boden ist
         //isGrounded = Physics.CheckSphere(groundCheck.position, distance, groundMask);
-        isGrounded = Physics.CheckBox(groundCheck.position + new Vector3(0, y_dist/2, 0), new Vector3(x_dist, y_dist, x_dist), Quaternion.identity);
+        isGrounded = Physics.CheckBox(groundCheck.position + new Vector3(0, y_dist/2, 0), new Vector3(x_dist, y_dist, x_dist), Quaternion.identity , groundMask);
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(x_dist, 0, 0));
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(-x_dist, 0, 0));
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, 0, x_dist));
