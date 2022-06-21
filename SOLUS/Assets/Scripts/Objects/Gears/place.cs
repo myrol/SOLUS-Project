@@ -15,7 +15,7 @@ public class place : Interactable
             source.PlayOneShot(placeAudio, 1f);
             gear.SetActive(true);
             gear_UI.SetActive(false);
-            lever.GetComponent<Lever>().setUsed(1);
+            lever.GetComponent<Lever>().setUsed();
         }
     }
 }

@@ -16,6 +16,7 @@ public class Startup : MonoBehaviour
 
         if (reset)
         {
+            player.GetComponent<StoryHolder>().resetSteampunk();
             trigger_2.SetActive(false);
 
             Debug.Log("Startup");

@@ -4,7 +4,7 @@ public class pickUp : Interactable
 {
     public GameObject gear;
     public GameObject gear_UI;
-    public GameObject lever;
+    public GameObject player;
     private Vector3 originalLocation;
     private Quaternion originalRotation;
     public AudioClip pickUpAudio;
@@ -18,7 +18,7 @@ public class pickUp : Interactable
     }
     protected override void Interact()
     {
-        if (lever.GetComponent<Lever>().getUsed() == 1 || lever.GetComponent<Lever>().getUsed() == 2)
+        if (player.GetComponent<StoryHolder>().getSteampunkLever() == 1 || player.GetComponent<StoryHolder>().getSteampunkLever() == 2)
         {
             gear.transform.localPosition = originalLocation;
             gear.transform.localRotation = originalRotation;

@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class Lever : Interactable
 {
-    [SerializeField] public int used;
-
 #pragma warning disable CS0108
-    [SerializeField] private GameObject camera, moving, crosshair, gears, room_0, player, cutScenePos, endScenePos;
+    [SerializeField] private GameObject camera, moving, crosshair, gears, player, cutScenePos, endScenePos;
 #pragma warning restore CS0108
     private Quaternion playerEndRot;
     private Quaternion camEndRot;
@@ -19,15 +17,10 @@ public class Lever : Interactable
         source = GetComponent<AudioSource>();
     }
 
-    public int getUsed()
+    public void setUsed()
     {
-        return used;
-    }
-
-    public void setUsed(int setter)
-    {
-        used += setter;
-        if (used == 3)
+        player.GetComponent<StoryHolder>().addSteampunkLever();
+        if (player.GetComponent<StoryHolder>().getSteampunkLever() == 3)
         {
             source.PlayOneShot(upAudio, 1f);
             moving.transform.localRotation = Quaternion.Euler(45f, -90f, 0f);
@@ -36,16 +29,16 @@ public class Lever : Interactable
 
     protected override void Interact()
     {
-        if (room_0.GetComponent<SteampunkStoryHolder>().getProgress() == 2)
+        if (player.GetComponent<StoryHolder>().getSteampunk() == 2)
         {
-            if (used == 0)
+            if (player.GetComponent<StoryHolder>().getSteampunkLever() == 0)
             {
                 StartCoroutine(ExplodeCutScene());
             }
-            else if (used == 3)
+            else if (player.GetComponent<StoryHolder>().getSteampunkLever() == 3)
             {
                 StartCoroutine(ElectricCutScene());
-                room_0.GetComponent<SteampunkStoryHolder>().addProgress();
+                player.GetComponent<StoryHolder>().addSteampunk();
             }
         }
         else if (moving.transform.eulerAngles.x == 315f)
@@ -132,7 +125,7 @@ public class Lever : Interactable
         camera.transform.localRotation = camEndRot;
         player.transform.position = endScenePos.transform.position;
 
-        used = -1;
+        player.GetComponent<StoryHolder>().addSteampunkLever();
 
         AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
         audioSource.Stop();
@@ -183,7 +176,7 @@ public class Lever : Interactable
         player.transform.localRotation = playerEndRot;
         camera.transform.localRotation = camEndRot;
         player.transform.position = endScenePos.transform.position;
-        used = 1;
+        player.GetComponent<StoryHolder>().addSteampunkLever();
         yield return null;
     }
 }

@@ -6,18 +6,18 @@ using TMPro;
 
 public class KeypadSteampunk : MonoBehaviour
 {
+
     public UnityEvent onCorrectInput;
     public TextMeshPro display;
 
     private const string WRONG_ANSWER = "ERROR";
     private const string RIGHT_ANWSWER = "CORRECT";
     private const string EMPTY = "";
-
-    private bool solved = false;
     private bool temporaryLock = false;
 
     [SerializeField]
     public string answer;
+    public GameObject player;
     private string userInput = EMPTY;
 
 
@@ -28,7 +28,7 @@ public class KeypadSteampunk : MonoBehaviour
 
     public void input(string number)
     {
-        if (solved || temporaryLock) return;
+        if (player.GetComponent<StoryHolder>().getSteampunkFurnace() == 1 || temporaryLock) return;
 
         if (number.Equals("#"))
         {
@@ -53,7 +53,7 @@ public class KeypadSteampunk : MonoBehaviour
          */
         if (userInput.Length >= answer.Length)
         {
-            if (userInput.Equals(answer) && GameObject.Find("Raum 0").GetComponent<SteampunkStoryHolder>().getProgress() == 1) // KORREKTE ANTWORT
+            if (userInput.Equals(answer) && player.GetComponent<StoryHolder>().getSteampunk() == 1) // KORREKTE ANTWORT
             {
                 AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
                 audioSource.Play();
@@ -64,7 +64,7 @@ public class KeypadSteampunk : MonoBehaviour
                     currentTime += Time.deltaTime;
                     audioSource.volume = Mathf.Lerp(0f, 0.628f, currentTime / 2f);
                 }
-                solved = true;
+                player.GetComponent<StoryHolder>().addSteampunkFurnace();
             }
             else // FALSCHE ANTWORT
             {
