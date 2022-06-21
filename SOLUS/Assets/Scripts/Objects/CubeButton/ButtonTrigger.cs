@@ -16,7 +16,6 @@ public class ButtonTrigger : MonoBehaviour
     [Range(0, 3)]
     private byte color = 0;
     
-    public LayerMask interactablesLayer;
     public UnityEvent buttonPressed;
     public UnityEvent buttonUnpressed;
 

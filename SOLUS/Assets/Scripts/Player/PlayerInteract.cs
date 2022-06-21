@@ -8,8 +8,6 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float distance = 2.5f;
     private Carryable item;
 
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -20,15 +18,32 @@ public class PlayerInteract : MonoBehaviour
 
     void castRay()
     {
+        if (item != null && item.pickedUp)
+        {
+            item.Drop();
+            item.pickedUp = false;
+            item = null;
+            return;
+        }
+
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, distance))
         {
+            Debug.Log("Hit " + hit.collider.name);
             int objLayer = hit.collider.gameObject.layer;
             if (objLayer == 7) // Interactables
             {
                 hit.collider.GetComponent<Interactable>().BaseInteract();
+            }
+
+            else if (objLayer == 8) // Carryables
+            {
+                item = hit.collider.GetComponent<Carryable>();
+                item.pickedUp = true;
+
+                item.PickUp();
             }
         }
     }

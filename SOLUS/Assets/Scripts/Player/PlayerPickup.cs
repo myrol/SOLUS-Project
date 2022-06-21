@@ -7,7 +7,6 @@ public class PlayerPickup : MonoBehaviour
     public GameObject cam;
     private Carryable item;
     private float distance = 2.25f;
-    public LayerMask mask;
 
     void Update()
     {
@@ -33,6 +32,7 @@ public class PlayerPickup : MonoBehaviour
         if (Physics.Raycast(ray, out hit, distance))
         {
             int objLayer = hit.collider.gameObject.layer;
+
             if (objLayer == 8) // Carryables
             {
                 item = hit.collider.GetComponent<Carryable>();

@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 6966987795197295323}
   - component: {fileID: 6966987795197295320}
   - component: {fileID: 6966987795197295325}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1607,9 +1607,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonMesh: {fileID: 4441314772072876141}
   color: 3
-  interactablesLayer:
-    serializedVersion: 2
-    m_Bits: 128
   buttonPressed:
     m_PersistentCalls:
       m_Calls:
@@ -1683,7 +1680,7 @@ GameObject:
   - component: {fileID: 268507932074490598}
   - component: {fileID: 1583919702320732306}
   - component: {fileID: 4355192745829733896}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
