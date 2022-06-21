@@ -8,6 +8,8 @@ public class LoadTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.tag.Equals("Player")) return;
+
         LoadManager.Instance.load(loadLocations);
         LoadManager.Instance.deload(deloadLocations);
     }

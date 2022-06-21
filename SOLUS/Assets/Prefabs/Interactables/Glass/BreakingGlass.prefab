@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7679021335590184199}
   - component: {fileID: 3204061215890545556}
   - component: {fileID: 6006667520927541432}
-  - component: {fileID: 595949695284647984}
+  - component: {fileID: 7240753826184843272}
   m_Layer: 6
   m_Name: NonBrokenGlass
   m_TagString: Untagged
@@ -330,8 +330,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4654280388375309668}
   m_Mesh: {fileID: 0}
---- !u!64 &595949695284647984
-MeshCollider:
+--- !u!65 &7240753826184843272
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -340,10 +340,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.25000578, y: 3.0000005, z: 3.5000005}
+  m_Center: {x: -0.124999344, y: 1.4999986, z: -1.7500011}
 --- !u!1 &5432816985863872226
 GameObject:
   m_ObjectHideFlags: 0

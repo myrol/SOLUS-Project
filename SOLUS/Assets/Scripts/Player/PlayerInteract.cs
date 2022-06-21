@@ -6,6 +6,8 @@ public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private GameObject cam;
     [SerializeField] private float distance = 2.5f;
+    private Carryable item;
+
 
     // Update is called once per frame
     void Update()
@@ -23,9 +25,9 @@ public class PlayerInteract : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, distance))
         {
-            if (hit.collider.gameObject.layer == 7) // Interactables
+            int objLayer = hit.collider.gameObject.layer;
+            if (objLayer == 7) // Interactables
             {
-                Debug.Log("Hit Interactable");
                 hit.collider.GetComponent<Interactable>().BaseInteract();
             }
         }

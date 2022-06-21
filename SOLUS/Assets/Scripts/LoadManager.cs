@@ -6,6 +6,10 @@ public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
 
+    [SerializeField] private bool debug = false;
+
+    [SerializeField] private List<GameObject> initLoad, initDeload;
+
     private void Awake()
     {
         if (Instance == null)
@@ -17,6 +21,14 @@ public class LoadManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        if (debug) return;
+
+        deload(initDeload);
+        load(initLoad);
     }
 
     public void load(List<GameObject> locations)
