@@ -38,12 +38,12 @@ public class StoryHolder : MonoBehaviour
         PlayerData data = SaveSystem.loadProgress();
         if (data != null)
         {
-            StartCoroutine(loadSaved());
-            /*
-            player.transform.position = new Vector3(data.savedProgress[0], data.savedProgress[1], data.savedProgress[2]);
-            player.transform.localRotation = Quaternion.Euler(0f, data.savedProgress[3], 0f);
-            camera.transform.localRotation = Quaternion.Euler(data.savedProgress[4], 0f, 0f);
-            loadFormData(data.savedProgress);*/
+            /*StartCoroutine(loadSaved()); */
+
+            transform.position = new Vector3(data.savedProgress[0], data.savedProgress[1], data.savedProgress[2]);
+            player.transform.rotation = Quaternion.Euler(0f, data.savedProgress[3], 0f);
+            camera.transform.rotation = Quaternion.Euler(data.savedProgress[4], 0f, 0f);
+            loadFormData(data.savedProgress);
         }
     }
 
@@ -53,12 +53,17 @@ public class StoryHolder : MonoBehaviour
         {
             StartCoroutine(saveGame());
         }
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            string path = Application.persistentDataPath + "/player.dat";
+            File.Delete(path);
+        }
     }
 
     private IEnumerator saveGame()
     {
         float[] data = { player.transform.position.x, player.transform.position.y, player.transform.position.z, player.transform.localEulerAngles.y, camera.transform.localEulerAngles.x, steampunk, steampunk_furnace, steampunk_valve, steampunk_lever };
-                      // 0-2 = pos,                                                                             3 = playerRotY,              4 = camRotX,                 5 = steampunk, 6 = steampunk_furnace, 7 = steampunk_valve, 8 = steampunk_lever
+                      // 0-2 = pos,                                                                             3 = playerRotY,                      4 = camRotX,                 5 = steampunk, 6 = steampunk_furnace, 7 = steampunk_valve, 8 = steampunk_lever
 
         SaveSystem.SavePlayer(data);
         yield return new WaitForSeconds(.5f);
@@ -76,7 +81,6 @@ public class StoryHolder : MonoBehaviour
             FileStream stream = new FileStream(path, FileMode.Open);
 
             PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            Debug.Log(data.savedProgress);
             player.transform.position = new Vector3(data.savedProgress[0], data.savedProgress[1], data.savedProgress[2]);
             player.transform.localRotation = Quaternion.Euler(0f, data.savedProgress[3], 0f);
             camera.transform.localRotation = Quaternion.Euler(data.savedProgress[4], 0f, 0f);
