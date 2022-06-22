@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class pickUp : Interactable
 {
-    public GameObject gear;
-    public GameObject gear_UI;
-    public GameObject player;
+    public GameObject gear, gear_UI, player;
     private Vector3 originalLocation;
     private Quaternion originalRotation;
     public AudioClip pickUpAudio;
+    float state;
 
     private void Start()
     {
@@ -16,9 +15,10 @@ public class pickUp : Interactable
         gear_UI.SetActive(false);
 
     }
+
     protected override void Interact()
     {
-        if (player.GetComponent<StoryHolder>().getSteampunkLever() == 1 || player.GetComponent<StoryHolder>().getSteampunkLever() == 2)
+        if (player.GetComponent<StoryHolder>().steampunk_lever == 1 || player.GetComponent<StoryHolder>().steampunk_lever == 2 && transform.eulerAngles.x !=0)
         {
             gear.transform.localPosition = originalLocation;
             gear.transform.localRotation = originalRotation;

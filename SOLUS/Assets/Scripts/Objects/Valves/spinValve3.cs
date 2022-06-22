@@ -15,9 +15,17 @@ public class spinValve3 : MonoBehaviour
         StartCoroutine(turner());
     }
 
+    public void loadValve3()
+    {
+        if (player.GetComponent<StoryHolder>().steampunk == 2)
+        {
+            StartCoroutine(silence());
+        }
+    }
+
     public IEnumerator turner()
     {
-        if (transform.localEulerAngles.y == 0 && player.GetComponent<StoryHolder>().getSteampunkValve() == 0)
+        if (transform.localEulerAngles.y == 0 && player.GetComponent<StoryHolder>().steampunk_valve == 0)
         {
             float elapsed = 0.0f;
             direction = 1f;
@@ -25,7 +33,7 @@ public class spinValve3 : MonoBehaviour
 
             yield return new WaitForSeconds(.3f);
             int counter = 0;
-            if (player.GetComponent<StoryHolder>().getSteampunkFurnace() == 0)
+            if (player.GetComponent<StoryHolder>().steampunk_furnace == 0)
             {
                 while (elapsed < 30f)
                 {
@@ -51,17 +59,17 @@ public class spinValve3 : MonoBehaviour
                     counter++;
                     if (counter == 750)
                     {
+                        player.GetComponent<StoryHolder>().steampunk++;
                         StartCoroutine(silence());
                     }
                     yield return null;
                 }
-                player.GetComponent<StoryHolder>().addSteampunkValve();
+                player.GetComponent<StoryHolder>().steampunk_valve++;
             }
         }
     }
     public IEnumerator silence()
     {
-        player.GetComponent<StoryHolder>().addSteampunk();
         AudioSource audioSource = GameObject.Find("Water_Player_2").GetComponent<AudioSource>();
         AudioSource audioSource2 = GameObject.Find("Steam_Player").GetComponent<AudioSource>();
         AudioSource audioSource3 = GameObject.Find("turbine").GetComponent<AudioSource>();

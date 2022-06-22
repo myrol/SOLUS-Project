@@ -7,15 +7,9 @@ public class turnGears : MonoBehaviour
     public GameObject gear2;  // -> 12
     public GameObject gear8;  // -> 28
     public GameObject gear1;  // -> 12
-    public GameObject tesla;
-    public GameObject sparks_2;
-    public GameObject sparks_3;
-    public GameObject machine_group;
-    public GameObject turbine;
+    public GameObject gear11_UI, gear2_UI, tesla, sparks_2, sparks_3, machine_group, turbine, player;
 
-    public AudioClip explosionAudio;
-    public AudioClip dropAudio;
-    public AudioClip CutSceneAudio;
+    public AudioClip explosionAudio, dropAudio, CutSceneAudio;
 
     public float speed;
 
@@ -209,12 +203,37 @@ public class turnGears : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(0.1f);
+        player.GetComponent<StoryHolder>().gear_11_state = 1;
+        player.GetComponent<StoryHolder>().gear_2_state = 1;
+        updateGears();
         audioSource = gear11.GetComponent<AudioSource>();
         audioSource.PlayOneShot(dropAudio, 1f);
-        gear11.transform.localRotation = Quaternion.Euler(82.2f, 90f, 90f);
-        gear11.transform.localPosition = new Vector3(71.641f, 5.233f, 34.754f);
-        gear2.transform.localRotation = Quaternion.Euler(-45f, 45f, 0f);
-        gear2.transform.localPosition = new Vector3(1.456f, 0.439f, 25.29f);
         yield return null;
+    }
+
+    public void updateGears()
+    {
+        float gear_11_state = player.GetComponent<StoryHolder>().gear_11_state;
+        float gear_2__state = player.GetComponent<StoryHolder>().gear_2_state;
+        if (gear_11_state == 1)
+        {
+            gear11.transform.localRotation = Quaternion.Euler(82.2f, 90f, 90f);
+            gear11.transform.localPosition = new Vector3(71.641f, 5.233f, 34.754f);
+        }
+        if (gear_2__state == 1)
+        {
+            gear2.transform.localRotation = Quaternion.Euler(-45f, 45f, 0f);
+            gear2.transform.localPosition = new Vector3(1.456f, 0.439f, 25.29f);
+        }
+        if (gear_11_state == 2)
+        {
+            gear11.SetActive(false);
+            gear11_UI.SetActive(true);
+        }
+        else if (gear_2__state == 2)
+        {
+            gear2.SetActive(false);
+            gear2_UI.SetActive(true);
+        }
     }
 }

@@ -12,33 +12,45 @@ public class Lever : Interactable
     [SerializeField] private AudioClip upAudio, downAudio;
     private AudioSource source;
 
-    private void Awake()
+    private void Start()
     {
         source = GetComponent<AudioSource>();
     }
 
-    public void setUsed()
+    public void loadLever()
     {
-        player.GetComponent<StoryHolder>().addSteampunkLever();
-        if (player.GetComponent<StoryHolder>().getSteampunkLever() == 3)
+        if (player.GetComponent<StoryHolder>().steampunk_lever == 0 || player.GetComponent<StoryHolder>().steampunk_lever == 3)
         {
-            source.PlayOneShot(upAudio, 1f);
             moving.transform.localRotation = Quaternion.Euler(45f, -90f, 0f);
+        }
+        else if (player.GetComponent<StoryHolder>().steampunk_lever == 4)
+        {
+            AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
+            audioSource.Stop();
+            audioSource = GameObject.Find("Steam_Player").GetComponent<AudioSource>();
+            audioSource.Stop();
+            audioSource = GameObject.Find("Water_Player_2").GetComponent<AudioSource>();
+            audioSource.Play();
+            audioSource.volume = 0.1f;
+        }
+        else
+        {
+            moving.transform.localRotation = Quaternion.Euler(-45f, -90f, 0f);
         }
     }
 
     protected override void Interact()
     {
-        if (player.GetComponent<StoryHolder>().getSteampunk() == 2)
+        if (player.GetComponent<StoryHolder>().steampunk == 2)
         {
-            if (player.GetComponent<StoryHolder>().getSteampunkLever() == 0)
+            if (player.GetComponent<StoryHolder>().steampunk_lever == 0)
             {
                 StartCoroutine(ExplodeCutScene());
             }
-            else if (player.GetComponent<StoryHolder>().getSteampunkLever() == 3)
+            else if (player.GetComponent<StoryHolder>().steampunk_lever == 3)
             {
                 StartCoroutine(ElectricCutScene());
-                player.GetComponent<StoryHolder>().addSteampunk();
+                player.GetComponent<StoryHolder>().steampunk++;
             }
         }
         else if (moving.transform.eulerAngles.x == 315f)
@@ -125,7 +137,7 @@ public class Lever : Interactable
         camera.transform.localRotation = camEndRot;
         player.transform.position = endScenePos.transform.position;
 
-        player.GetComponent<StoryHolder>().addSteampunkLever();
+        player.GetComponent<StoryHolder>().steampunk_lever++;
 
         AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
         audioSource.Stop();
@@ -176,7 +188,7 @@ public class Lever : Interactable
         player.transform.localRotation = playerEndRot;
         camera.transform.localRotation = camEndRot;
         player.transform.position = endScenePos.transform.position;
-        player.GetComponent<StoryHolder>().addSteampunkLever();
+        player.GetComponent<StoryHolder>().steampunk_lever++;
         yield return null;
     }
 }

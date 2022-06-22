@@ -26,9 +26,25 @@ public class KeypadSteampunk : MonoBehaviour
         userInput = EMPTY;
     }
 
+    public void loadKeypad()
+    {
+        if(player.GetComponent<StoryHolder>().steampunk_furnace == 1)
+        {
+            AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
+            audioSource.Play();
+            StartCoroutine(rightAnswer());
+            float currentTime = 0;
+            while (currentTime < 2f)
+            {
+                currentTime += Time.deltaTime;
+                audioSource.volume = Mathf.Lerp(0f, 0.628f, currentTime / 2f);
+            }
+        }
+    }
+
     public void input(string number)
     {
-        if (player.GetComponent<StoryHolder>().getSteampunkFurnace() == 1 || temporaryLock) return;
+        if (player.GetComponent<StoryHolder>().steampunk_furnace == 1 || temporaryLock) return;
 
         if (number.Equals("#"))
         {
@@ -53,7 +69,7 @@ public class KeypadSteampunk : MonoBehaviour
          */
         if (userInput.Length >= answer.Length)
         {
-            if (userInput.Equals(answer) && player.GetComponent<StoryHolder>().getSteampunk() == 1) // KORREKTE ANTWORT
+            if (userInput.Equals(answer) && player.GetComponent<StoryHolder>().steampunk == 1) // KORREKTE ANTWORT
             {
                 AudioSource audioSource = GameObject.Find("furnace").GetComponent<AudioSource>();
                 audioSource.Play();
@@ -64,7 +80,7 @@ public class KeypadSteampunk : MonoBehaviour
                     currentTime += Time.deltaTime;
                     audioSource.volume = Mathf.Lerp(0f, 0.628f, currentTime / 2f);
                 }
-                player.GetComponent<StoryHolder>().addSteampunkFurnace();
+                player.GetComponent<StoryHolder>().steampunk_furnace++;
             }
             else // FALSCHE ANTWORT
             {

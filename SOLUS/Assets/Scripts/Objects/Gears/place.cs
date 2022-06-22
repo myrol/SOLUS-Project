@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class place : Interactable
 {
-    public GameObject gear;
-    public GameObject gear_UI;
-    public GameObject lever;
+    public GameObject gear, gear_UI, lever, player;
     public AudioClip placeAudio;
 
     protected override void Interact()
@@ -15,7 +13,8 @@ public class place : Interactable
             source.PlayOneShot(placeAudio, 1f);
             gear.SetActive(true);
             gear_UI.SetActive(false);
-            lever.GetComponent<Lever>().setUsed();
+            player.GetComponent<StoryHolder>().steampunk_lever++;
+            lever.GetComponent<Lever>().loadLever();
         }
     }
 }

@@ -14,10 +14,18 @@ public class SpinValveMain : MonoBehaviour
         source = GetComponent<AudioSource>();
         StartCoroutine(turnerMain());
     }
+    public void loadValveMain()
+    {
+        source = GetComponent<AudioSource>();
+        if (player.GetComponent<StoryHolder>().steampunk >= 1)
+        {
+            StartCoroutine(waterSound());
+        }
+    }
 
     public IEnumerator turnerMain()
     {
-        if (transform.localEulerAngles.y == 0 && player.GetComponent<StoryHolder>().getSteampunk() == 0)
+        if (transform.localEulerAngles.y == 0 && player.GetComponent<StoryHolder>().steampunk == 0)
         {
             float elapsed = 0.0f;
             source.PlayOneShot(turnAudio, 1f);
@@ -28,9 +36,9 @@ public class SpinValveMain : MonoBehaviour
                 transform.Rotate(0.0f, -1f, 0.0f, Space.Self);
                 elapsed += 0.12f;
                 yield return null;
-                if (elapsed > 60f && player.GetComponent<StoryHolder>().getSteampunk() == 0)
+                if (elapsed > 60f && player.GetComponent<StoryHolder>().steampunk == 0)
                 {
-                    player.GetComponent<StoryHolder>().addSteampunk();
+                    player.GetComponent<StoryHolder>().steampunk++;
                     StartCoroutine(waterSound());
                 }
             }
