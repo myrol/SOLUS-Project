@@ -31552,6 +31552,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  tag: 
 --- !u!1 &5857165598836721838
 GameObject:
   m_ObjectHideFlags: 0
@@ -44641,15 +44642,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666946405889394594, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9158096
+      value: 2.978
       objectReference: {fileID: 0}
     - target: {fileID: 4666946405889394594, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.087761
+      value: -3.06
       objectReference: {fileID: 0}
     - target: {fileID: 4666946405889394594, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.114902
+      value: 37.115
       objectReference: {fileID: 0}
     - target: {fileID: 4666946405889394594, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
       propertyPath: m_LocalRotation.w

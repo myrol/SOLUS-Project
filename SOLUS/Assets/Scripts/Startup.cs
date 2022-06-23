@@ -27,9 +27,6 @@ public class Startup : MonoBehaviour
             player.GetComponent<StoryHolder>().resetSteampunk();
             trigger_2.SetActive(false);
             seekers.SetActive(false);
-            GameObject.Find("ROOM 1").SetActive(false);
-            GameObject.Find("ROOM 2").SetActive(false);
-            GameObject.Find("ROOM 3").SetActive(false);
 
             Debug.Log("Startup");
             //Canvas black
