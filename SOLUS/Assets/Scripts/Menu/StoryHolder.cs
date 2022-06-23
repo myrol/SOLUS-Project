@@ -11,12 +11,13 @@ public class StoryHolder : MonoBehaviour
     public int steampunk_valve; //0 = begin, 1 = turned
     public int steampunk_lever; //0 = begin, 1&2 = gears, 3 = electric
     public int gear_11_state, gear_2_state; //0=default, 1=weggeschleudert, 2=aufgenommen, 3=ende
+    public int keycards; //0=default
 
 #pragma warning disable CS0108
     public GameObject camera, player, lever, gears, keypad, valve3, valveMain, entrance;
 #pragma warning restore CS0108
 
-    public void resetSteampunk() { steampunk = -1; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; }
+    public void resetSteampunk() { steampunk = -1; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; keycards = 0; }
 
     public void loadFormData(float[] data)
     {
@@ -26,6 +27,7 @@ public class StoryHolder : MonoBehaviour
         steampunk_lever = (int)data[8];
         gear_11_state = (int)data[9];
         gear_2_state = (int)data[10];
+        keycards = (int)data[11];
 
     }
 
@@ -62,7 +64,7 @@ public class StoryHolder : MonoBehaviour
 
     private IEnumerator saveGame()
     {
-        float[] data = { player.transform.position.x, player.transform.position.y, player.transform.position.z, player.transform.localEulerAngles.y, camera.transform.localEulerAngles.x, steampunk, steampunk_furnace, steampunk_valve, steampunk_lever, gear_11_state, gear_2_state };
+        float[] data = { player.transform.position.x, player.transform.position.y, player.transform.position.z, player.transform.localEulerAngles.y, camera.transform.localEulerAngles.x, steampunk, steampunk_furnace, steampunk_valve, steampunk_lever, gear_11_state, gear_2_state, keycards };
                       // 0-2 = pos,                                                                             3 = playerRotY,                      4 = camRotX,                 5 = steampunk, 6 = steampunk_furnace, 7 = steampunk_valve, 8 = steampunk_lever
 
         SaveSystem.SavePlayer(data);

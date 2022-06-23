@@ -20,9 +20,6 @@ public class Startup : MonoBehaviour
         GameObject.Find("steampunk_key_ui").SetActive(false);
         GameObject.Find("steampunk_keycard_ui").SetActive(false);
         GameObject.Find("death").SetActive(false);
-        GameObject.Find("ROOM 1").SetActive(false);
-        GameObject.Find("ROOM 2").SetActive(false);
-        GameObject.Find("ROOM 3").SetActive(false);
 
         if (reset)
         {
@@ -30,6 +27,9 @@ public class Startup : MonoBehaviour
             player.GetComponent<StoryHolder>().resetSteampunk();
             trigger_2.SetActive(false);
             seekers.SetActive(false);
+            GameObject.Find("ROOM 1").SetActive(false);
+            GameObject.Find("ROOM 2").SetActive(false);
+            GameObject.Find("ROOM 3").SetActive(false);
 
             Debug.Log("Startup");
             //Canvas black
