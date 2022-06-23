@@ -7,21 +7,32 @@ public class Startup : MonoBehaviour
 
     [SerializeField] private bool reset;
 #pragma warning disable CS0108
-    [SerializeField] private GameObject player, crosshair, trigger_2, camera;
+    [SerializeField] private GameObject player, crosshair, trigger_2, camera, credits;
 #pragma warning restore CS0108
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;   //Locked die Maus am Anfang des Spiels
+        Cursor.lockState = CursorLockMode.Locked;
+        GameObject.Find("gear2_UI").SetActive(false);
+        GameObject.Find("gear11_UI").SetActive(false);
+        GameObject.Find("cubes_keycard_ui").SetActive(false);
+        GameObject.Find("office_keycard_ui").SetActive(false);
+        GameObject.Find("steampunk_key_ui").SetActive(false);
+        GameObject.Find("steampunk_keycard_ui").SetActive(false);
 
         if (reset)
         {
+            credits.GetComponent<CreditRoll>().roll();
             player.GetComponent<StoryHolder>().resetSteampunk();
             trigger_2.SetActive(false);
 
             Debug.Log("Startup");
             //Canvas black
             StartCoroutine(startupRountine());
+        }
+        else
+        {
+            credits.SetActive(false);
         }
     }
 
@@ -48,7 +59,7 @@ public class Startup : MonoBehaviour
             yield return null;
         }
         player.transform.position = new Vector3(16.7f, 17.85f, -22.2f);
-        yield return new WaitForSeconds(18);
+        yield return new WaitForSeconds(20);
 
         camera.GetComponent<CameraMovement>().enabled = true;
         crosshair.SetActive(true);

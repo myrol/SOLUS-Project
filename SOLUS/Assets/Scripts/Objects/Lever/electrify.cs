@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class electrify : MonoBehaviour
 {
-    public GameObject electric_arc;
-    public GameObject seekers;
+    public GameObject electric_arc, seekers, steampunk_keycard;
 
     private void Start()
     {

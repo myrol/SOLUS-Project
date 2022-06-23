@@ -6,14 +6,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class StoryHolder : MonoBehaviour
 {
-    public int steampunk; //0 = begin, 1 = valve, 2 = turbine
+    public int steampunk; //-1 = locked, 0 = begin, 1 = valve, 2 = turbine, 3 = keycard placed/locked
     public int steampunk_furnace; //0 = begin, 1 = solved
     public int steampunk_valve; //0 = begin, 1 = turned
     public int steampunk_lever; //0 = begin, 1&2 = gears, 3 = electric
     public int gear_11_state, gear_2_state; //0=default, 1=weggeschleudert, 2=aufgenommen, 3=ende
 
 #pragma warning disable CS0108
-    public GameObject camera, player, lever, gears, keypad, valve3, valveMain;
+    public GameObject camera, player, lever, gears, keypad, valve3, valveMain, entrance;
 #pragma warning restore CS0108
 
     public void resetSteampunk() { steampunk = 0; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; }
@@ -38,6 +38,7 @@ public class StoryHolder : MonoBehaviour
             player.transform.rotation = Quaternion.Euler(0f, data.savedProgress[3], 0f);
             camera.transform.rotation = Quaternion.Euler(data.savedProgress[4], 0f, 0f);
             loadFormData(data.savedProgress);
+            entrance.GetComponent<unlockSteampunk>().loadDoors();
             valveMain.GetComponent<SpinValveMain>().loadValveMain();
             lever.GetComponent<Lever>().loadLever();
             gears.GetComponent<turnGears>().updateGears();
