@@ -14,6 +14,7 @@ public class electrify : MonoBehaviour
 
     public IEnumerator Explode()
     {
+        steampunk_keycard.layer = 8;
         electric_arc.SetActive(true);
 
         //play Sound

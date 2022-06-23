@@ -15,9 +15,9 @@ public class Startup : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         GameObject.Find("gear2_UI").SetActive(false);
         GameObject.Find("gear11_UI").SetActive(false);
+        GameObject.Find("steampunk_key_ui").SetActive(false);
         GameObject.Find("cubes_keycard_ui").SetActive(false);
         GameObject.Find("office_keycard_ui").SetActive(false);
-        GameObject.Find("steampunk_key_ui").SetActive(false);
         GameObject.Find("steampunk_keycard_ui").SetActive(false);
         GameObject.Find("death").SetActive(false);
 
