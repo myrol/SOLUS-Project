@@ -10,6 +10,7 @@ public class SlidingDoor : MonoBehaviour
     [SerializeField] private float animationDuration_open = 1.5f;
     [SerializeField] private float animationDuration_close = 1.632f;
     [SerializeField] private float distance = 3f;
+    [SerializeField] private bool startOpen = false;
     private Vector3 start;
     private Vector3 target;
 
@@ -17,6 +18,8 @@ public class SlidingDoor : MonoBehaviour
     {
         start = transform.position;
         target = transform.position + Vector3.up * distance;
+
+        if (startOpen) open();
     }
 
     public void open()

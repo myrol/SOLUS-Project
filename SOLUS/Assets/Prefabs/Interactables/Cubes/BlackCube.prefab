@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5688991743209595164}
   m_Layer: 0
   m_Name: BlackCube
-  m_TagString: Untagged
+  m_TagString: BlackCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 328927465245571119, guid: bb94bf2738937074cab118e396074754, type: 3}
       propertyPath: m_Name
+      value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910684010511776285, guid: bb94bf2738937074cab118e396074754, type: 3}
+      propertyPath: m_TagString
       value: Cube
       objectReference: {fileID: 0}
     - target: {fileID: 8340116322844678010, guid: bb94bf2738937074cab118e396074754, type: 3}

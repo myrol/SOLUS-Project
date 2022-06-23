@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 2886190140768129721}
   - component: {fileID: 4541776152363639090}
   - component: {fileID: 2614105558613285068}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5650865992822309950}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -2.0920029, y: 1.1748962, z: -1.3330002}
+  m_LocalPosition: {x: -2.0920029, y: 1.17, z: -1.3330002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -831,19 +831,19 @@ Light:
   m_GameObject: {fileID: 5650865992822309950}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.66522783, g: 0.7884341, b: 0.9339623, a: 1}
-  m_Intensity: 8
-  m_Range: 6.450496
-  m_SpotAngle: 179
-  m_InnerSpotAngle: 96.65887
+  m_Intensity: 10
+  m_Range: 6.5466266
+  m_SpotAngle: 149.00726
+  m_InnerSpotAngle: 85.746895
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
     m_Resolution: 512
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.549
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2

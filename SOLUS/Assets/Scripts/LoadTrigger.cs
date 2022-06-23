@@ -10,6 +10,11 @@ public class LoadTrigger : MonoBehaviour
     {
         if (!other.tag.Equals("Player")) return;
 
+        externTrigger();
+    }
+
+    public void externTrigger()
+    {
         LoadManager.Instance.load(loadLocations);
         LoadManager.Instance.deload(deloadLocations);
     }

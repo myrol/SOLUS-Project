@@ -9,12 +9,12 @@ public class Colorable : MonoBehaviour
 
     private const string MATERIAL_PATH = "Materials/Room1/Cubes/";
 
-    private void Awake()
+    /*private void Awake()
     {
-        changeColor(color);
-    }
+        applyColor();
+    }*/
 
-    private void changeColor(byte _color)
+    public void applyColor()
     {
         switch (color)
         {

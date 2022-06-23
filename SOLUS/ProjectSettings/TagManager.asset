@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cube
   - Sprayable
+  - BlackCube
+  - RedCube
+  - Cube
   layers:
   - Default
   - TransparentFX

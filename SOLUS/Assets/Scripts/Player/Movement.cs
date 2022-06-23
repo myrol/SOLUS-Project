@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     public CharacterController controller;
     private bool moving = false;
     private bool footstepsPlaying = false;
-    private float speed = 7f;
+    private float speed;
     private Vector3 velocity;
     private Vector2 currentInputVector;
 
@@ -28,8 +28,14 @@ public class Movement : MonoBehaviour
     //Variablen für Ducken
     [SerializeField] private float crouchingSpeed = 2.5f;
     [SerializeField] private float standingSpeed = 4f;
+    private Vector3 groundCheckPositionChange = new Vector3(0f, 0.5f, 0f);
     private float crouchHeight = 1f;
     private float standingHeight = 2f;
+
+    private void Start()
+    {
+        speed = standingSpeed;
+    }
 
     void Update()
     {
@@ -81,11 +87,13 @@ public class Movement : MonoBehaviour
         }
 
         //Wenn LStrg gedrückt wird, duckt sich der Spieler
-        if (Input.GetKey(KeyCode.LeftControl)) {
+        if (Input.GetKeyDown(KeyCode.LeftControl)) {
             controller.height = crouchHeight;
+            groundCheck.position += groundCheckPositionChange;
             speed = crouchingSpeed;
-        } else {
+        } else if (Input.GetKeyUp(KeyCode.LeftControl)) {
             controller.height = standingHeight;
+            groundCheck.position -= groundCheckPositionChange;
             speed = standingSpeed;
         }
 

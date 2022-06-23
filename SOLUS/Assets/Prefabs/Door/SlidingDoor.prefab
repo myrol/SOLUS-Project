@@ -245,6 +245,7 @@ MonoBehaviour:
   animationDuration_open: 1.5
   animationDuration_close: 1.632
   distance: 3
+  startOpen: 0
 --- !u!1 &5424253961293693155
 GameObject:
   m_ObjectHideFlags: 0

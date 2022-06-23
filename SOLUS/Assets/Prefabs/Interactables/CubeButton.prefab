@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 4441314772072876141}
   - component: {fileID: 144276217393574425}
   - component: {fileID: 144276217393574424}
+  - component: {fileID: 9166661987698587797}
   m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
@@ -1088,6 +1089,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: 47fb1d53e70b50e4c8b4d0032e55528e, type: 3}
+--- !u!114 &9166661987698587797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000548343058776548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b55ab38552d6b46a7913dc4b448449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 4441314772072876141}
+  color: 0
 --- !u!1 &3170402648415838189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,8 +1620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795671a56b04b344292684ba92399430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonMesh: {fileID: 4441314772072876141}
-  color: 3
   buttonPressed:
     m_PersistentCalls:
       m_Calls:

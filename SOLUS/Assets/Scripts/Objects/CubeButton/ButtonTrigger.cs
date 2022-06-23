@@ -5,48 +5,18 @@ using UnityEngine.Events;
 
 public class ButtonTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private MeshRenderer buttonMesh;
-
-    private const string MATERIAL_PATH = "Materials/Room1/Button/";
-
     private List<Collider> cubesOnButton;
-
-    [SerializeField]
-    [Range(0, 3)]
-    private byte color = 0;
     
     public UnityEvent buttonPressed;
     public UnityEvent buttonUnpressed;
 
+    private byte acceptedColor;
+
     private void Start()
     {
-        changeColor(color);
         cubesOnButton = new List<Collider>();
-    }
 
-    private void FixedUpdate()
-    {
-        changeColor(color);
-    }
-
-    private void changeColor(byte _color)
-    {
-        switch (color)
-        {
-            case 0:
-                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "black");
-                break;
-            case 1:
-                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "blue");
-                break;
-            case 2:
-                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "green");
-                break;
-            case 3:
-                buttonMesh.material = Resources.Load<Material>(MATERIAL_PATH + "red");
-                break;
-        }
+        acceptedColor = gameObject.transform.parent.GetChild(1).GetComponent<Colorable>().color;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,7 +25,7 @@ public class ButtonTrigger : MonoBehaviour
         if (c == null && other.tag != "Player") return;
 
         // If it's the player or the color of the cube matches
-        if(other.tag == "Player" || c.color == GameAssets.COLOR_BLACK || c.color == color )
+        if(other.tag == "Player" || c.color == GameAssets.COLOR_BLACK || c.color == acceptedColor )
         {
             cubesOnButton.Add(other);
 
