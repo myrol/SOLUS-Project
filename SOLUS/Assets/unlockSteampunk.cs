@@ -20,7 +20,7 @@ public class unlockSteampunk : Interactable
     protected override void Interact()
     {
         if (player.GetComponent<StoryHolder>().steampunk == -1 && steampunk_key_ui.activeSelf)
-
+        {
             player.GetComponent<StoryHolder>().steampunk++;
             steampunk_key_ui.SetActive(false);
             eve.Invoke();
