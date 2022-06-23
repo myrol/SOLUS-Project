@@ -5,6 +5,7 @@ using UnityEngine;
 public class electrify : MonoBehaviour
 {
     public GameObject electric_arc, seekers, steampunk_keycard;
+    public AudioClip dialogueClip;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class electrify : MonoBehaviour
         yield return new WaitForSeconds(2.25f);
 
         electric_arc.SetActive(false);
+        GameObject.Find("DialogueManager").GetComponent<AudioSource>().PlayOneShot(dialogueClip);
         steampunk_keycard.layer = 7;
 
         yield return new WaitForSeconds(4);

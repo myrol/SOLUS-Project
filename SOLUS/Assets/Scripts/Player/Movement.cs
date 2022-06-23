@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     //Variablen fürs Springen
     private float jumpTrajectoryControl = 2f; // % inwiefern der Spieler kontroller in der Luft hat
     private float jumpThrust = .8f; // % vom movement speed
-    private float jumpheight = 0.65f;
+    private float jumpheight = 0.5f;
 
     //Variablen für Ducken
     [SerializeField] private float crouchingSpeed = 2.5f;

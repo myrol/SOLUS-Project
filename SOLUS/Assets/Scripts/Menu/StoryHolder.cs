@@ -16,7 +16,7 @@ public class StoryHolder : MonoBehaviour
     public GameObject camera, player, lever, gears, keypad, valve3, valveMain, entrance;
 #pragma warning restore CS0108
 
-    public void resetSteampunk() { steampunk = 0; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; }
+    public void resetSteampunk() { steampunk = -1; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; }
 
     public void loadFormData(float[] data)
     {
