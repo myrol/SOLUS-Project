@@ -17,20 +17,15 @@ public class electrify : MonoBehaviour
 
         //play Sound
         gameObject.GetComponent<AudioSource>().Play();
+        steampunk_keycard.transform.position = new Vector3(steampunk_keycard.transform.position.x, steampunk_keycard.transform.position.y, steampunk_keycard.transform.position.z + 0.1f);
         yield return new WaitForSeconds(2.25f);
 
         electric_arc.SetActive(false);
+        steampunk_keycard.layer = 7;
 
         yield return new WaitForSeconds(4);
 
-        //play announcer and move laby (set day?)
-        float elapsed = 0.0f;
-        while (elapsed < 4.0f)
-        {
-            elapsed += Time.deltaTime;
-            seekers.transform.position += Vector3.down * Time.deltaTime / 4;
-            yield return null;
-        }
+        //play announcer, licht anmachen
         seekers.SetActive(false);
 
         yield return null;

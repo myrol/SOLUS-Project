@@ -64,6 +64,7 @@ public class CreditRoll : MonoBehaviour
         objectUsing.SetActive(false);
         yield return null;
     }
+
     private IEnumerator FadeInOutImg(GameObject objectUsing)
     {
         objectUsing.SetActive(true);

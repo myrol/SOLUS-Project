@@ -7,7 +7,7 @@ public class PickKeyCard : Interactable
 
     protected override void Interact()
     {
-        if (player.GetComponent<StoryHolder>().steampunk_lever == 4 && player.GetComponent<StoryHolder>().steampunk == 2)
+        if (player.GetComponent<StoryHolder>().steampunk_lever == 4 && player.GetComponent<StoryHolder>().steampunk == 3)
         {
             pickObject.transform.localPosition = toPlace.transform.localPosition;
             pickObject.transform.localRotation = toPlace.transform.localRotation;

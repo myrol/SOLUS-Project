@@ -7,7 +7,7 @@ public class Startup : MonoBehaviour
 
     [SerializeField] private bool reset;
 #pragma warning disable CS0108
-    [SerializeField] private GameObject player, crosshair, trigger_2, camera, credits;
+    [SerializeField] private GameObject player, crosshair, trigger_2, camera, credits, seekers;
 #pragma warning restore CS0108
 
     void Start()
@@ -19,12 +19,14 @@ public class Startup : MonoBehaviour
         GameObject.Find("office_keycard_ui").SetActive(false);
         GameObject.Find("steampunk_key_ui").SetActive(false);
         GameObject.Find("steampunk_keycard_ui").SetActive(false);
+        GameObject.Find("death").SetActive(false);
 
         if (reset)
         {
             credits.GetComponent<CreditRoll>().roll();
             player.GetComponent<StoryHolder>().resetSteampunk();
             trigger_2.SetActive(false);
+            seekers.SetActive(false);
 
             Debug.Log("Startup");
             //Canvas black

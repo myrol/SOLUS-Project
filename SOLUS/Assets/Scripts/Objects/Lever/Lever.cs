@@ -109,20 +109,33 @@ public class Lever : Interactable
         yield return new WaitForSeconds(7);
         //turn Camera to tesla
         elapsed = 0.0f;
-        while (elapsed < 2.5f)
+        int[] watcher = { 0, 0, 0, 0 };
+        while (watcher[0] + watcher[1] + watcher[2] + watcher[3] != 4)
         {
             if (player.transform.rotation.y >= -0.9019078)
             {
-                player.transform.Rotate(0.0f, -0.38f, 0.0f, Space.Self);
+                player.transform.Rotate(0.0f, -0.4f, 0.0f, Space.Self);
             }
+            else
+                watcher[0]=1;
             if (camera.transform.rotation.x >= -0.06365685)
             {
                 camera.transform.Rotate(-0.06f, 0.0f, 0.0f, Space.Self);
             }
-            if (player.transform.position.x < 49.9118f && player.transform.position.z > -20.6618f)
+            else
+                watcher[1] = 1;
+            if (player.transform.position.x < 49.9118f)
             {
-                player.transform.position = player.transform.position + new Vector3(0.008f, 0f, -0.008f);
+                player.transform.position = player.transform.position + new Vector3(0.019f, 0f, 0f);
             }
+            else
+                watcher[2] = 1;
+            if (player.transform.position.z > -20.6618f)
+            {
+                player.transform.position = player.transform.position + new Vector3(0f, 0f, -0.009f);
+            }
+            else
+                watcher[3] = 1;
             elapsed += Time.deltaTime;
             yield return null;
         }
