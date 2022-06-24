@@ -5,7 +5,7 @@ using UnityEngine;
 public class reaktorMeltdown : MonoBehaviour
 {
     public GameObject light1, light2, light3, light4, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3, reactor_screen4;
-    public AudioClip melting, flink;
+    public AudioClip announcer, melting, flink;
     private bool done = false;
     float originalIntensity;
     Color32 originalColor;
@@ -29,6 +29,8 @@ public class reaktorMeltdown : MonoBehaviour
 
     public IEnumerator meltdown()
     {
+        SoundManager.Instance.playSFX(announcer);
+        yield return new WaitForSeconds(3.3f);
         screen1.SetActive(false);
         screen2.SetActive(false);
         StartCoroutine(meltdownLight(light1));
@@ -66,13 +68,12 @@ public class reaktorMeltdown : MonoBehaviour
     public IEnumerator meltdownLight(GameObject lightObject)
     {
         AudioSource source = gameObject.GetComponent<AudioSource>();
-        source.PlayOneShot(flink);
+        SoundManager.Instance.playSFX(flink);
         while (lightObject.GetComponent<Light>().intensity > 0)
         {
             lightObject.GetComponent<Light>().intensity -= Time.deltaTime * 50;
             yield return null;
         }
-        source.PlayOneShot(flink);
         lightObject.GetComponent<Light>().intensity = originalIntensity;
         while (lightObject.GetComponent<Light>().intensity > 0)
         {
@@ -80,7 +81,7 @@ public class reaktorMeltdown : MonoBehaviour
             yield return null;
         }
         lightObject.GetComponent<Light>().color = new Color32(234, 93, 93, 255);
-        source.PlayOneShot(melting);
+        SoundManager.Instance.playSFX(melting);
         while (lightObject.GetComponent<Light>().intensity < originalIntensity)
         {
             lightObject.GetComponent<Light>().intensity += Time.deltaTime * 5;
