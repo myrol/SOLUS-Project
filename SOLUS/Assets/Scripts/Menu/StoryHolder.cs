@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class StoryHolder : MonoBehaviour
 {
-    public int steampunk; //-1 = locked, 0 = begin, 1 = valve, 2 = turbine, 3 = ende
+    public int steampunk; //0 = begin, 1 = valve, 2 = turbine, 3 = ende
     public int steampunk_furnace; //0 = begin, 1 = solved
     public int steampunk_valve; //0 = begin, 1 = turned
     public int steampunk_lever; //0 = begin, 1&2 = gears, 3 = electric
@@ -14,10 +14,10 @@ public class StoryHolder : MonoBehaviour
     public int keycards; //0=default
 
 #pragma warning disable CS0108
-    public GameObject camera, player, lever, gears, keypad, valve3, valveMain, entrance;
+    public GameObject camera, player, lever, gears, keypad, valve3, valveMain;
 #pragma warning restore CS0108
 
-    public void resetSteampunk() { steampunk = -1; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; keycards = 0; }
+    public void resetSteampunk() { steampunk = 0; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; keycards = 0; }
 
     public void loadFormData(float[] data)
     {
