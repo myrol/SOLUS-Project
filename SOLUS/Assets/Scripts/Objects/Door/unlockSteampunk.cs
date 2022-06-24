@@ -21,10 +21,6 @@ public class unlockSteampunk : Interactable
     {
         if (player.GetComponent<StoryHolder>().steampunk == -1 && steampunk_key_ui.activeSelf)
         {
-            GameObject.Find("ROOM 1").SetActive(false);
-            GameObject.Find("ROOM 2").SetActive(false);
-            GameObject.Find("ROOM 3").SetActive(true);
-            GameObject.Find("TutorialNeu").SetActive(false);
             player.GetComponent<StoryHolder>().steampunk++;
             steampunk_key_ui.SetActive(false);
             eve.Invoke();

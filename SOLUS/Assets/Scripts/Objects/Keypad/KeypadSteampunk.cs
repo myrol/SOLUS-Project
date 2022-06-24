@@ -17,12 +17,15 @@ public class KeypadSteampunk : MonoBehaviour
 
     [SerializeField]
     public string answer;
+    public AudioClip beep;
     public GameObject player;
     private string userInput = EMPTY;
 
 
     private void Awake()
     {
+        gameObject.AddComponent<AudioSource>();
+        gameObject.GetComponent<AudioSource>().volume = 0.2f;
         userInput = EMPTY;
     }
 
@@ -45,6 +48,8 @@ public class KeypadSteampunk : MonoBehaviour
     public void input(string number)
     {
         if (player.GetComponent<StoryHolder>().steampunk_furnace == 1 || temporaryLock) return;
+
+        gameObject.GetComponent<AudioSource>().PlayOneShot(beep);
 
         if (number.Equals("#"))
         {

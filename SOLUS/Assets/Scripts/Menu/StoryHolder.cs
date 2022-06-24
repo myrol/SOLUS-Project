@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class StoryHolder : MonoBehaviour
 {
-    public int steampunk; //-1 = locked, 0 = begin, 1 = valve, 2 = turbine, 3 = keycard placed/locked
+    public int steampunk; //-1 = locked, 0 = begin, 1 = valve, 2 = turbine, 3 = ende
     public int steampunk_furnace; //0 = begin, 1 = solved
     public int steampunk_valve; //0 = begin, 1 = turned
     public int steampunk_lever; //0 = begin, 1&2 = gears, 3 = electric
