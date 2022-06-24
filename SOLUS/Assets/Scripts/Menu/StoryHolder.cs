@@ -40,7 +40,6 @@ public class StoryHolder : MonoBehaviour
             player.transform.rotation = Quaternion.Euler(0f, data.savedProgress[3], 0f);
             camera.transform.rotation = Quaternion.Euler(data.savedProgress[4], 0f, 0f);
             loadFormData(data.savedProgress);
-            entrance.GetComponent<unlockSteampunk>().loadDoors();
             valveMain.GetComponent<SpinValveMain>().loadValveMain();
             lever.GetComponent<Lever>().loadLever();
             gears.GetComponent<turnGears>().updateGears();
