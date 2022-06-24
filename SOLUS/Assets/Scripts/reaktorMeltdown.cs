@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class reaktorMeltdown : MonoBehaviour
 {
-    public GameObject light1, light2, light3, light4, seekers;
+    public GameObject light1, light2, light3, light4, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3, reactor_screen4;
     public AudioClip melting, flink;
+
+    private void Start()
+    {
+        reactor_screen1.SetActive(false);
+        reactor_screen2.SetActive(false);
+        reactor_screen3.SetActive(false);
+        reactor_screen4.SetActive(false);
+    }
 
     public void startMeltdownRrountine()
     {
@@ -14,34 +22,43 @@ public class reaktorMeltdown : MonoBehaviour
 
     public IEnumerator meltdown()
     {
-        Color32 originalColor = light1.GetComponent<Light>().color;
-        int elapsed = 0;
-        DialogueManager.Instance.AddToQueue(flink);
-        while (elapsed < 255)
+        screen1.SetActive(false);
+        screen2.SetActive(false);
+        StartCoroutine(meltdownLight(light1));
+        StartCoroutine(meltdownLight(light2));
+        StartCoroutine(meltdownLight(light3));
+        StartCoroutine(meltdownLight(light4));
+        yield return new WaitForSeconds(3);
+        reactor_screen1.SetActive(true);
+        reactor_screen2.SetActive(true);
+        reactor_screen3.SetActive(true);
+        reactor_screen4.SetActive(true);
+    }
+
+    public IEnumerator meltdownLight(GameObject lightObject)
+    {
+        AudioSource source = gameObject.GetComponent<AudioSource>();
+        float originalIntensity = lightObject.GetComponent<Light>().intensity;
+        source.PlayOneShot(flink);
+        while (lightObject.GetComponent<Light>().intensity > 0)
         {
-            elapsed++;
-            light1.GetComponent<Light>().color = new Color32(170, 201, 238, (byte)(255-elapsed));
+            lightObject.GetComponent<Light>().intensity -= Time.deltaTime * 50;
             yield return null;
         }
-        elapsed = 0;
-        DialogueManager.Instance.AddToQueue(flink);
-        light1.GetComponent<Light>().color = new Color32(170, 201, 238, 255);
-        while (elapsed < 255)
+        source.PlayOneShot(flink);
+        lightObject.GetComponent<Light>().intensity = originalIntensity;
+        while (lightObject.GetComponent<Light>().intensity > 0)
         {
-            elapsed++;
-            light1.GetComponent<Light>().color = new Color32(170, 201, 238, (byte)(255 - elapsed));
+            lightObject.GetComponent<Light>().intensity -= Time.deltaTime * 50;
             yield return null;
         }
-        elapsed = 0;
-        light1.GetComponent<Light>().color = new Color32(234, 93, 93, 0);
-        DialogueManager.Instance.AddToQueue(melting);
-        while (elapsed < 255)
+        lightObject.GetComponent<Light>().color = new Color32(234, 93, 93, 255);
+        source.PlayOneShot(melting);
+        while (lightObject.GetComponent<Light>().intensity < originalIntensity)
         {
-            elapsed++;
-            light1.GetComponent<Light>().color = new Color32(234, 93, 93, (byte)(elapsed));
+            lightObject.GetComponent<Light>().intensity += Time.deltaTime * 5;
             yield return null;
         }
-        elapsed = 0;
         yield return null;
     }
 }
