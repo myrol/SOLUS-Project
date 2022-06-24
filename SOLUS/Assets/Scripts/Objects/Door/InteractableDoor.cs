@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractableDoor : Interactable
 {
-    [SerializeField] private GameObject ui;
+    [SerializeField] private List<GameObject> requiredKeycards;
     private Door script;
 
     private void Awake()
@@ -14,9 +14,12 @@ public class InteractableDoor : Interactable
 
     protected override void Interact()
     {
-        if (ui.activeSelf)
+        // Iteriere durch alle keycards. Falls einer von denen nicht aufgesammelt wurde: brich ab.
+        foreach (GameObject k in requiredKeycards)
         {
-            script.open();
+            if (!k.activeSelf) return;
         }
+        
+        script.open();
     }
 }

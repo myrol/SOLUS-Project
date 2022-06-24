@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Startup : MonoBehaviour
 {
-
+    [SerializeField] private float animationDuration = 15f;
     [SerializeField] private bool reset;
 #pragma warning disable CS0108
     [SerializeField] private GameObject player, crosshair, trigger_2, camera, credits, seekers;
@@ -30,7 +31,6 @@ public class Startup : MonoBehaviour
             trigger_2.SetActive(false);
             seekers.SetActive(false);
 
-            Debug.Log("Startup");
             //Canvas black
             StartCoroutine(startupRountine());
         }
@@ -50,20 +50,14 @@ public class Startup : MonoBehaviour
         player.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         camera.transform.localRotation = Quaternion.Euler(-45f, 0f, 0f);
 
-        yield return new WaitForSeconds(11);
-        //Start screen visibility
-        yield return new WaitForSeconds(2.5f);
+        // Screen fades in
+        yield return new WaitForSeconds(13.5f);
+        // Screen visible
 
-        float elapsed = 0.0f;
-        while (elapsed < 90f)
-        {
-            camera.transform.Rotate(0.06f, 0f, 0.0f, Space.Self);
-            player.transform.position += new Vector3(0.0014267f, 0.00167f, 0f);
-            elapsed += 0.12f;
-            yield return null;
-        }
-        player.transform.position = new Vector3(16.7f, 17.85f, -22.2f);
-        yield return new WaitForSeconds(20);
+        // Wakeup animation
+        player.transform.DOMove(new Vector3(16.70f, 17.85f, -22.2f), animationDuration);
+        camera.transform.DOLocalRotate(new Vector3(0, 0, 0), animationDuration);
+        yield return new WaitForSeconds(animationDuration);
 
         camera.GetComponent<CameraMovement>().enabled = true;
         crosshair.SetActive(true);

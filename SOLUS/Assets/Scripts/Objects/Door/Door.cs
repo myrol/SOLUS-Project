@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] private bool openOtherWay = false;
     public AudioClip doorOpenAudio, doorCloseAudio;
 
+    private bool opened = false;
     private Vector3 start;
     private Vector3 target;
 
@@ -23,12 +24,18 @@ public class Door : MonoBehaviour
 
     public void open()
     {
+        if (opened) return;
+
+        opened = true;
         gameObject.GetComponent<AudioSource>().PlayOneShot(doorOpenAudio);
         transform.DOLocalRotate(target, animationDuration);
     }
 
     public void close()
     {
+        if (!opened) return;
+
+        opened = false;
         gameObject.GetComponent<AudioSource>().PlayOneShot(doorCloseAudio);
         transform.DOLocalRotate(start, animationDuration);
     }

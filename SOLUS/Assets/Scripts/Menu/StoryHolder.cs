@@ -51,10 +51,10 @@ public class StoryHolder : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             StartCoroutine(saveGame());
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.F1))
         {
             string path = Application.persistentDataPath + "/player.dat";

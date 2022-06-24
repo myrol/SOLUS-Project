@@ -7,7 +7,7 @@ public class PlatformMove : MonoBehaviour
 {
     private bool canMove = false;
 
-    [SerializeField]private float speed = 1.1f;
+    [SerializeField] private float speed = 1.1f;
 
     public void moveDown()
     {
@@ -32,7 +32,9 @@ public class PlatformMove : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (canMove == false || transform.position.y < 0) return;
+        if (!canMove) return;
+
+        if (transform.position.y < 0) Destroy(gameObject);
 
         transform.position += Vector3.down * speed * Time.deltaTime;
     }
