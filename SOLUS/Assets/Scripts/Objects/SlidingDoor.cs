@@ -38,13 +38,15 @@ public class SlidingDoor : MonoBehaviour
 
     public IEnumerator playOpenSound()
     {
-        SoundManager.Instance.playSFX(audio_open);
+        audio_open.Stop();
+        audio_open.Play();
         yield break;
     }
 
     public IEnumerator playCloseSound()
     {
-        SoundManager.Instance.playSFX(audio_close);
+        audio_close.Stop();
+        audio_close.Play();
         yield break;
     }
 }

@@ -6,6 +6,7 @@ using DG.Tweening;
 public class LockerDoor : MonoBehaviour
 {
     [SerializeField] private bool openOtherWay = false;
+    public AudioClip doorOpenAudio, doorCloseAudio;
 
     private bool isOpen;
     private Vector3 start;
@@ -15,6 +16,8 @@ public class LockerDoor : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.AddComponent<AudioSource>();
+        gameObject.GetComponent<AudioSource>().volume = 0.3f;
         start = transform.localEulerAngles;
         target = (openOtherWay) ? new Vector3(0f, start.y + 90f, 0f) : new Vector3(0f, start.y - 90f, 0f);
         isOpen = false;
@@ -24,11 +27,13 @@ public class LockerDoor : MonoBehaviour
     {
         if(!isOpen)
         {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(doorOpenAudio);
             transform.DOLocalRotate(target, animationDuration);
             isOpen = true;
         }
         else
         {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(doorCloseAudio);
             transform.DOLocalRotate(start, animationDuration);
             isOpen = false;
         }

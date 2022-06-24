@@ -2571,7 +2571,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4345
+  m_VersionIndex: 4357
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2844,7 +2844,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1007
+  m_VersionIndex: 1019
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5668,7 +5668,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 10859
+  m_VersionIndex: 10871
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -22193,7 +22193,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4141337186464983224}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 42.232094, y: -10.883339, z: 18.375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22626,7 +22626,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1108
+  m_VersionIndex: 1120
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -26747,7 +26747,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3362
+  m_VersionIndex: 3374
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -39389,7 +39389,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2268
+  m_VersionIndex: 2280
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -44894,7 +44894,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1774
+  m_VersionIndex: 1789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -50082,7 +50082,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3068
+  m_VersionIndex: 3083
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -55421,7 +55421,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1648
+  m_VersionIndex: 1663
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -69024,7 +69024,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2388
+  m_VersionIndex: 2400
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -74527,7 +74527,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1674
+  m_VersionIndex: 1686
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -93377,6 +93377,10 @@ PrefabInstance:
       propertyPath: color
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8617361617783917282, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: eb86e493d2b617f45b817d7bb7d0cb1f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
 --- !u!4 &8765461308547321669 stripped
@@ -93563,7 +93567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6582215169729345936, guid: 96db1305bf2a17442b14d6c9138d39ae, type: 3}
       propertyPath: m_VersionIndex
-      value: 1501
+      value: 1513
       objectReference: {fileID: 0}
     - target: {fileID: 6582215169729345936, guid: 96db1305bf2a17442b14d6c9138d39ae, type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -94007,6 +94011,10 @@ PrefabInstance:
       propertyPath: color
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8617361617783917282, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: eb86e493d2b617f45b817d7bb7d0cb1f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
 --- !u!4 &8765461308796350889 stripped
@@ -94324,7 +94332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178809314498765232, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 1151
+      value: 1166
       objectReference: {fileID: 0}
     - target: {fileID: 509845325419432880, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_IsActive
@@ -94360,7 +94368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974461685175240245, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 5035
+      value: 5047
       objectReference: {fileID: 0}
     - target: {fileID: 5107987510607266282, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_Mesh
@@ -94430,6 +94438,14 @@ PrefabInstance:
       propertyPath: color
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_up
+      value: 
+      objectReference: {fileID: 8300000, guid: d7adef5d0699d7e49a9748040fac5c3f, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ae036988b73484486c7f253fd1e202, type: 3}
     - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -94689,6 +94705,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_up
+      value: 
+      objectReference: {fileID: 8300000, guid: d7adef5d0699d7e49a9748040fac5c3f, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ae036988b73484486c7f253fd1e202, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -94750,7 +94774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7045314793711449286, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 5047
+      value: 5059
       objectReference: {fileID: 0}
     - target: {fileID: 7337693628164901143, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_IsActive
@@ -95173,7 +95197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178809314498765232, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 1157
+      value: 1169
       objectReference: {fileID: 0}
     - target: {fileID: 509845325419432880, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_IsActive
@@ -95279,6 +95303,14 @@ PrefabInstance:
       propertyPath: color
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_up
+      value: 
+      objectReference: {fileID: 8300000, guid: d7adef5d0699d7e49a9748040fac5c3f, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ae036988b73484486c7f253fd1e202, type: 3}
     - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -95388,7 +95420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178809314498765232, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 1154
+      value: 1169
       objectReference: {fileID: 0}
     - target: {fileID: 509845325419432880, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_IsActive
@@ -95490,6 +95522,14 @@ PrefabInstance:
       propertyPath: color
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_up
+      value: 
+      objectReference: {fileID: 8300000, guid: d7adef5d0699d7e49a9748040fac5c3f, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ae036988b73484486c7f253fd1e202, type: 3}
     - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -96138,6 +96178,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4666946406345938705, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
+      propertyPath: doorOpenAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: bbb5a688526afa74a87937bb52ec86aa, type: 3}
+    - target: {fileID: 4666946406345938705, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
+      propertyPath: doorCloseAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 37e0fbf2a18bd2845a2f758f16c69958, type: 3}
     - target: {fileID: 4666946406345938710, guid: 9a578f856cb50834b8030de45507abf0, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.5501479
@@ -96281,6 +96329,10 @@ PrefabInstance:
       propertyPath: color
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8617361617783917282, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: eb86e493d2b617f45b817d7bb7d0cb1f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
 --- !u!4 &8765461306888240515 stripped
@@ -96497,7 +96549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974461685175240245, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 5038
+      value: 5050
       objectReference: {fileID: 0}
     - target: {fileID: 5107987510607266282, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_Mesh
@@ -96567,6 +96619,14 @@ PrefabInstance:
       propertyPath: color
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_up
+      value: 
+      objectReference: {fileID: 8300000, guid: d7adef5d0699d7e49a9748040fac5c3f, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ae036988b73484486c7f253fd1e202, type: 3}
     - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -96741,7 +96801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221640580061393318, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_VersionIndex
-      value: 5062
+      value: 5074
       objectReference: {fileID: 0}
     - target: {fileID: 2500120510918485775, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: m_IsActive
@@ -96835,6 +96895,14 @@ PrefabInstance:
       propertyPath: color
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_up
+      value: 
+      objectReference: {fileID: 8300000, guid: d7adef5d0699d7e49a9748040fac5c3f, type: 3}
+    - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ae036988b73484486c7f253fd1e202, type: 3}
     - target: {fileID: 6966987795197295325, guid: 3593ece9b4ac758448ae7adb42567f15, type: 3}
       propertyPath: buttonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -97001,6 +97069,10 @@ PrefabInstance:
       propertyPath: color
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8617361617783917282, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
+      propertyPath: but_down
+      value: 
+      objectReference: {fileID: 8300000, guid: eb86e493d2b617f45b817d7bb7d0cb1f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0928534af9ee24fa129735525ebc28, type: 3}
 --- !u!4 &1936754503710136640 stripped
@@ -97072,6 +97144,14 @@ PrefabInstance:
       propertyPath: ui
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7983370961407571168, guid: 28f0f2c8f5c3a3047ba6d90be9106c65, type: 3}
+      propertyPath: doorOpenAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: bbb5a688526afa74a87937bb52ec86aa, type: 3}
+    - target: {fileID: 7983370961407571168, guid: 28f0f2c8f5c3a3047ba6d90be9106c65, type: 3}
+      propertyPath: doorCloseAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 37e0fbf2a18bd2845a2f758f16c69958, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28f0f2c8f5c3a3047ba6d90be9106c65, type: 3}
 --- !u!4 &289009822848843733 stripped
@@ -97168,7 +97248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6582215169729345936, guid: 96db1305bf2a17442b14d6c9138d39ae, type: 3}
       propertyPath: m_VersionIndex
-      value: 1495
+      value: 1510
       objectReference: {fileID: 0}
     - target: {fileID: 6582215169729345936, guid: 96db1305bf2a17442b14d6c9138d39ae, type: 3}
       propertyPath: m_SelectedEdges.Array.size

@@ -19,10 +19,12 @@ public class Startup : MonoBehaviour
         GameObject.Find("cubes_keycard_ui").SetActive(false);
         GameObject.Find("office_keycard_ui").SetActive(false);
         GameObject.Find("steampunk_keycard_ui").SetActive(false);
-        GameObject.Find("death").SetActive(false);
+        GameObject.Find("intro_success").SetActive(false);
+        GameObject.Find("death").SetActive(false); 
 
         if (reset)
         {
+            reset = false;
             credits.GetComponent<CreditRoll>().roll();
             player.GetComponent<StoryHolder>().resetSteampunk();
             trigger_2.SetActive(false);

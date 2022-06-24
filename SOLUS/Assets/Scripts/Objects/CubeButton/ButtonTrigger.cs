@@ -9,12 +9,15 @@ public class ButtonTrigger : MonoBehaviour
     
     public UnityEvent buttonPressed;
     public UnityEvent buttonUnpressed;
+    public AudioClip but_down, but_up;
 
     private byte acceptedColor;
 
     private void Start()
     {
         cubesOnButton = new List<Collider>();
+        gameObject.AddComponent<AudioSource>();
+        gameObject.GetComponent<AudioSource>().volume = 0.3f;
 
         acceptedColor = gameObject.transform.parent.GetChild(1).GetComponent<Colorable>().color;
     }
@@ -31,6 +34,7 @@ public class ButtonTrigger : MonoBehaviour
 
             if (cubesOnButton.Count == 1)
             {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(but_down);
                 buttonPressed.Invoke();
             }
         }
@@ -47,6 +51,7 @@ public class ButtonTrigger : MonoBehaviour
 
             if (cubesOnButton.Count == 0)
             {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(but_up);
                 buttonUnpressed.Invoke();
             }
         }

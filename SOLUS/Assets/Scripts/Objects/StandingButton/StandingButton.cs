@@ -7,9 +7,11 @@ public class StandingButton : Interactable
 {
     public Animator anim;
     [SerializeField] public UnityEvent eve;
+    public AudioClip but_down;
 
     void Start()
     {
+        gameObject.AddComponent<AudioSource>();
         anim = GetComponent<Animator>();    
     }
     protected override void Interact()
@@ -22,15 +24,14 @@ public class StandingButton : Interactable
         Debug.Log("Activated!");
         anim.SetTrigger("TrActivate");
         eve.Invoke();
-
+        gameObject.GetComponent<AudioSource>().PlayOneShot(but_down);
         StartCoroutine(deactivate());
     }
 
     private IEnumerator deactivate()
     {
-        yield return new WaitForSeconds(1);
-
         Debug.Log("Deactivated!");
         anim.SetTrigger("TrDeactivate");
+        yield return null;
     }
 }
