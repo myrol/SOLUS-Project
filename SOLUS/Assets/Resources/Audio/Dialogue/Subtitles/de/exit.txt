@@ -1,0 +1,3 @@
+000.250|<b>Announcer</b>: Glückwunsch!
+002.800|<b>Announcer</b>: Sie haben alle 32 Tests absolviert und haben sich einen Platz in unserer Kryokammer zur Verwahrung verdient.
+010.330|<b>Announcer</b>: Bitte bleiben Sie wo Sie sind. Ein Mitarbeiter wird Sie bald holen und betäuben um Sie zu sezieren.
