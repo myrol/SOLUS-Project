@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class reaktorMeltdown : MonoBehaviour
 {
-    public GameObject light1, light2, light3, light4, light5, light6, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3, reactor_screen4;
+    public GameObject light1, light2, light3, light4, light5, light6, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3;
     public AudioClip announcer, melting, flink;
     private bool done = false;
     float originalIntensity;
@@ -15,7 +15,6 @@ public class reaktorMeltdown : MonoBehaviour
         reactor_screen1.SetActive(false);
         reactor_screen2.SetActive(false);
         reactor_screen3.SetActive(false);
-        reactor_screen4.SetActive(false);
     }
 
     public void startMeltdownRrountine()
@@ -53,7 +52,6 @@ public class reaktorMeltdown : MonoBehaviour
         reactor_screen1.SetActive(true);
         reactor_screen2.SetActive(true);
         reactor_screen3.SetActive(true);
-        reactor_screen4.SetActive(true);
         seekers.SetActive(true);
         light1.GetComponent<Light>().color = originalColor;
         light2.GetComponent<Light>().color = originalColor;

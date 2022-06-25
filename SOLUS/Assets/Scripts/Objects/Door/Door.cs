@@ -17,8 +17,8 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         gameObject.AddComponent<AudioSource>();
-        gameObject.GetComponent<AudioSource>().volume = 0.3f;
-        gameObject.GetComponent<AudioSource>().maxDistance = 10f;
+        gameObject.GetComponent<AudioSource>().volume = 0.35f;
+        gameObject.GetComponent<AudioSource>().maxDistance = 100f;
         gameObject.GetComponent<AudioSource>().spatialBlend = 1f;
         start = transform.localEulerAngles;
         target = (openOtherWay) ? new Vector3(0f, start.y + 90f, 0f) : new Vector3(0f, start.y - 90f, 0f);

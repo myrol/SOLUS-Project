@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     private float x_dist = 0.375f;
     private float y_dist = 0.05f;
     public LayerMask groundMask;
+    public LayerMask interactMask;
     private bool isGrounded;
 
     //Variablen fürs Springen
@@ -42,6 +43,8 @@ public class Movement : MonoBehaviour
         //Checkt ob der Spieler auf dem Boden ist
         //isGrounded = Physics.CheckSphere(groundCheck.position, distance, groundMask);
         isGrounded = Physics.CheckBox(groundCheck.position + new Vector3(0, y_dist/2, 0), new Vector3(x_dist, y_dist, x_dist), Quaternion.identity , groundMask);
+        if(isGrounded==false)
+            isGrounded = Physics.CheckBox(groundCheck.position + new Vector3(0, y_dist / 2, 0), new Vector3(x_dist, y_dist, x_dist), Quaternion.identity, interactMask);
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(x_dist, 0, 0));
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(-x_dist, 0, 0));
         Debug.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, 0, x_dist));

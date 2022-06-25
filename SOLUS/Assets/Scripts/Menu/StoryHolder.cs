@@ -14,7 +14,7 @@ public class StoryHolder : MonoBehaviour
     public int keycards; //0=default
 
 #pragma warning disable CS0108
-    public GameObject camera, player, lever, gears, keypad, valve3, valveMain;
+    public GameObject camera, player, lever, gears, furnace, valve3, valveMain;
 #pragma warning restore CS0108
 
     public void resetSteampunk() { steampunk = 0; steampunk_furnace = 0; steampunk_valve = 0; steampunk_lever = 0; gear_11_state = 0; gear_2_state = 0; keycards = 0; }
@@ -43,7 +43,7 @@ public class StoryHolder : MonoBehaviour
             valveMain.GetComponent<SpinValveMain>().loadValveMain();
             lever.GetComponent<Lever>().loadLever();
             gears.GetComponent<turnGears>().updateGears();
-            keypad.GetComponent<KeypadSteampunk>().loadKeypad();
+            furnace.GetComponent<Furnace>().loadFurnace();
             valve3.GetComponent<spinValve3>().loadValve3();
         }
     }
