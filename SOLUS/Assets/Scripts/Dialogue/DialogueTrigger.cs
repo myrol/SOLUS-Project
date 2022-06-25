@@ -10,8 +10,18 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            DialogueManager.Instance.AddToQueue(dialogueClip);
-            Destroy(gameObject);
+            sendToManager();
         }
+    }
+
+    public void remotePlay()
+    {
+        sendToManager();
+    }
+
+    private void sendToManager()
+    {
+        DialogueManager.Instance.AddToQueue(dialogueClip);
+        Destroy(gameObject);
     }
 }

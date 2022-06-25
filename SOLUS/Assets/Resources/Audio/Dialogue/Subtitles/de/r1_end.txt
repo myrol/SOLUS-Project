@@ -1,3 +1,2 @@
-002.183|<b>Announcer</b>: Schön! Sie sind einer der Wenigen, die diese Testkammer meistern konnten.
-008.370|<b>Announcer</b>: Ihre Problemlösungsfähigkeiten werden sehr von Nutzen sein. Vertrauen Sie ihren Instinkten.
-
+002.183|<b>Announcer</b>: Schoen! Sie sind einer der Wenigen, die diese Testkammer meistern konnten.
+008.370|<b>Announcer</b>: Ihre Problemloesungsfaehigkeiten werden sehr von Nutzen sein. Vertrauen Sie ihren Instinkten.

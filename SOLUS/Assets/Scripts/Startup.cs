@@ -22,7 +22,6 @@ public class Startup : MonoBehaviour
         GameObject.Find("steampunk_keycard_ui").SetActive(false);
         GameObject.Find("intro_success").SetActive(false);
         GameObject.Find("death").SetActive(false);
-        GameObject.Find("sparks_r1").SetActive(false);
 
         if (reset)
         {

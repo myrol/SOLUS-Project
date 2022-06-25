@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
      * Tutorial: https://youtu.be/1NW0BYn5KfE
      */
 
+    [SerializeField] private bool verbose = false;
+
     //Subtitle Variables
     private const float _RATE = 44100.0f;
 
@@ -83,6 +85,9 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginDialogue(AudioClip passedClip)
     {
+        Verbose("--- BeginDialogue ---");
+        Verbose("Resetting all lists and values..");
+
         nextTrigger = 0;
         nextSubtitle = 0;
         dialogueAudio = passedClip;
@@ -100,9 +105,13 @@ public class DialogueManager : MonoBehaviour
         triggerObjectNames = new List<string>();
         triggerMethodNames = new List<string>();
 
+        Verbose("Fetching file...");
+
         // Get everything from the .txt file
         string subtitlesPath = "Audio/Dialogue/Subtitles/de/" + dialogueAudio.name;
         TextAsset temp = Resources.Load(subtitlesPath) as TextAsset;
+
+        Verbose("Splitting file into lines...");
         fileLines = temp.text.Split('\n');
 
         // Split subtitle related lines into different lists
@@ -118,17 +127,23 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        Verbose("Splitting timings for n=" + subtitleLines.Count + "...");
         // Split out our timings and text
         for (int i = 0; i < subtitleLines.Count; i++)
         {
+            Verbose("\tSplitting on \'|\' for " + subtitleLines[i] + "...");
             string[] splitTemp = subtitleLines[i].Split('|');           // Split at Pipe: [0] = timing, [1] = text
+            Verbose("\tAdding " + splitTemp[0] + " to subtitleTimingStrings...");
             subtitleTimingStrings.Add(splitTemp[0]);                    // Add to plain Text timings
             // Convert into float and store in timings
             // System.Global...InvariantCulture ist fuer die Formatunterscheidung zwischen 3.1415 und 3,1415
-            subtitleTimings.Add(float.Parse(subtitleTimingStrings[i], System.Globalization.CultureInfo.InvariantCulture)); 
+            Verbose("\tParsing " + subtitleTimingStrings[i] + " and adding to subtitleTimings...");
+            subtitleTimings.Add(float.Parse(subtitleTimingStrings[i], System.Globalization.CultureInfo.InvariantCulture));
+            Verbose("\tAdding " + splitTemp[1] + " to subtitleText");
             subtitleText.Add(splitTemp[1]);
         }
 
+        Verbose("Splitting text...");
         for (int i = 0; i < triggerLines.Count; i++)
         {
             string[] splitTemp = triggerLines[i].Split('|');
@@ -143,12 +158,14 @@ public class DialogueManager : MonoBehaviour
 
         }
 
+        Verbose("Setting initial text...");
         // Set initial subtitle text
         if (subtitleText[0] != null)
         {
             displaySubtitle = subtitleText[0];
         }
 
+        Verbose("Playing audio...");
         // Play the Audio
         audio = gameObject.AddComponent<AudioSource>();
         audio.clip = dialogueAudio;
@@ -207,5 +224,10 @@ public class DialogueManager : MonoBehaviour
                 displaySubtitle = "";
             }
         }
+    }
+
+    private void Verbose(string s)
+    {
+        if (verbose) Debug.Log("DIALOGUEMANAGER: " + s);
     }
 }

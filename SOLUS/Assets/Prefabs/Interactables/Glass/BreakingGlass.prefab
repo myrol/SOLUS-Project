@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 8945930807246265075}
   - component: {fileID: 3200395182795748746}
   - component: {fileID: 7806402483319959999}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonBrokenGlass: {fileID: 4654280388375309668}
   glassObj: {fileID: 5318615051824198652}
-  breakingForce: 50
+  breakingForce: 250
   audio: {fileID: 1430546097328635910}
 --- !u!1 &8289384682992170696
 GameObject:

@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1d0689f2d8abaa5498bbaa73b39406ae, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 427344761e201a847affdb55a68f682e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio_close: {fileID: 2002873058215910810}
   audio_open: {fileID: 4285483592830085771}
-  animationDuration_open: 1.5
-  animationDuration_close: 1.632
+  animationDuration_open: 0.589
+  animationDuration_close: 0.589
   distance: 3
   startOpen: 0
 --- !u!1 &5424253961293693155
@@ -288,7 +288,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2c245174baa96914f9040521b12fc6b3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 56d8536726c8689448c020e17142ac0a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

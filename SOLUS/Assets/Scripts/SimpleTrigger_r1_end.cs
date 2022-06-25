@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class SimpleTrigger_r1_end : MonoBehaviour
 {
     [SerializeField] private UnityEvent eve;
-    [SerializeField] private string tag;
-    public GameObject end_announcer, end_announcer2;
-    bool done = false;
+    public GameObject end_announcer;
+    
+    private bool done = false;
 
     private void Start()
     {
@@ -17,7 +17,12 @@ public class SimpleTrigger_r1_end : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == tag && !done)
+        Colorable cubeColor = other.gameObject.GetComponent<Colorable>();
+
+        if (cubeColor == null || other.gameObject.tag != "Cube") return;
+
+        if ( !done &&  (cubeColor.color == GameAssets.COLOR_BLACK || 
+                        cubeColor.color == GameAssets.COLOR_RED) )
         {
             StartCoroutine(r1_end());
         }
@@ -25,12 +30,8 @@ public class SimpleTrigger_r1_end : MonoBehaviour
 
     private IEnumerator r1_end()
     {
-        end_announcer.SetActive(true);
-        yield return new WaitForSeconds(15);
+        end_announcer.GetComponent<DialogueTrigger>().remotePlay();
         eve.Invoke();
-        yield return new WaitForSeconds(20);
-        end_announcer2.SetActive(true);
-        end_announcer2.transform.position = GameObject.Find("Player").transform.position;
         Destroy(gameObject);
         yield return null;
     }

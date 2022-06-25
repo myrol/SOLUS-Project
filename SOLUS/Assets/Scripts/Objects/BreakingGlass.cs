@@ -6,10 +6,11 @@ public class BreakingGlass : MonoBehaviour
 {
     [SerializeField] private GameObject nonBrokenGlass;
     [SerializeField] private GameObject glassObj;
-    [SerializeField] private float breakingForce = 50f;
+    [SerializeField] private float breakingForce = 500f;
 #pragma warning disable CS0108
     [SerializeField] private AudioSource audio;
 #pragma warning restore CS0108
+    private bool alreadyActivated = false;
 
     private void Awake()
     {
@@ -19,7 +20,8 @@ public class BreakingGlass : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != 8) return; // Carryable
+        if (alreadyActivated || other.gameObject.layer != 8) return; // Carryable
+        alreadyActivated = true;
 
         nonBrokenGlass.SetActive(false);
         glassObj.SetActive(true);
@@ -32,10 +34,11 @@ public class BreakingGlass : MonoBehaviour
             Rigidbody rb = child.GetComponent<Rigidbody>();
 
             rb.constraints = RigidbodyConstraints.None;
-            rb.AddForce(new Vector3(breakingForce, 0, 0));
+            rb.AddForce(other.gameObject.GetComponent<Rigidbody>().velocity * 50);
         }
 
         SoundManager.Instance.playSFX(audio);
+
         StartCoroutine(destroy());
     }
 
