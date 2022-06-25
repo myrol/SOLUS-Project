@@ -20,11 +20,11 @@ public class CreditRoll : MonoBehaviour
         logo.SetActive(false);
         by.SetActive(false);
         //start
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(FadeInOutImg(logo));
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(5.5f);
         StartCoroutine(FadeInOut(by));
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8.5f);
 
         credits.SetActive(true);
         byte elapsed = 255;
@@ -57,7 +57,7 @@ public class CreditRoll : MonoBehaviour
             if (elapsed == 255)
             {
                 direction = false;
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1);
             }
             yield return null;
         }
@@ -80,7 +80,7 @@ public class CreditRoll : MonoBehaviour
             if (elapsed == 255)
             {
                 direction = false;
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(0.5f);
             }
             yield return null;
         }

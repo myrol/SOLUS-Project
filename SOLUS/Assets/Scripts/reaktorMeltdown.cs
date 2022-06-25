@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class reaktorMeltdown : MonoBehaviour
 {
-    public GameObject light1, light2, light3, light4, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3, reactor_screen4;
+    public GameObject light1, light2, light3, light4, light5, light6, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3, reactor_screen4;
     public AudioClip announcer, melting, flink;
     private bool done = false;
     float originalIntensity;
@@ -37,6 +37,8 @@ public class reaktorMeltdown : MonoBehaviour
         StartCoroutine(meltdownLight(light2));
         StartCoroutine(meltdownLight(light3));
         StartCoroutine(meltdownLight(light4));
+        StartCoroutine(meltdownLight(light5));
+        StartCoroutine(meltdownLight(light5));
         yield return new WaitForSeconds(3);
         while (light1.GetComponent<Light>().intensity > 0)
         {
@@ -44,6 +46,8 @@ public class reaktorMeltdown : MonoBehaviour
             light2.GetComponent<Light>().intensity -= Time.deltaTime * 50;
             light3.GetComponent<Light>().intensity -= Time.deltaTime * 50;
             light4.GetComponent<Light>().intensity -= Time.deltaTime * 50;
+            light5.GetComponent<Light>().intensity -= Time.deltaTime * 50;
+            light6.GetComponent<Light>().intensity -= Time.deltaTime * 50;
             yield return null;
         }
         reactor_screen1.SetActive(true);
@@ -55,12 +59,16 @@ public class reaktorMeltdown : MonoBehaviour
         light2.GetComponent<Light>().color = originalColor;
         light3.GetComponent<Light>().color = originalColor;
         light4.GetComponent<Light>().color = originalColor;
+        light5.GetComponent<Light>().color = originalColor;
+        light6.GetComponent<Light>().color = originalColor;
         while (light1.GetComponent<Light>().intensity < originalIntensity)
         {
             light1.GetComponent<Light>().intensity += Time.deltaTime * 50;
             light2.GetComponent<Light>().intensity += Time.deltaTime * 50;
             light3.GetComponent<Light>().intensity += Time.deltaTime * 50;
-            light4.GetComponent<Light>().intensity += Time.deltaTime * 50;
+            light4.GetComponent<Light>().color = originalColor;
+            light5.GetComponent<Light>().color = originalColor;
+            light6.GetComponent<Light>().color = originalColor;
             yield return null;
         }
     }

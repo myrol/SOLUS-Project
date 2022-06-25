@@ -56,8 +56,8 @@ public class Startup : MonoBehaviour
         // Screen visible
 
         // Wakeup animation
-        player.transform.DOMove(new Vector3(16.70f, 17.85f, -22.2f), animationDuration);
-        camera.transform.DOLocalRotate(new Vector3(0, 0, 0), animationDuration);
+        player.transform.DOMove(new Vector3(16.70f, 17.85f, -22.2f), animationDuration-5);
+        camera.transform.DOLocalRotate(new Vector3(0, 0, 0), animationDuration - 5);
         yield return new WaitForSeconds(animationDuration);
 
         camera.GetComponent<CameraMovement>().enabled = true;
@@ -65,8 +65,9 @@ public class Startup : MonoBehaviour
 
         while (true)
         {
-            if(player.transform.localEulerAngles.y >= 92f || player.transform.localEulerAngles.y <= 88f)
+            if(player.transform.localEulerAngles.y >= 110f || player.transform.localEulerAngles.y <= 70f)
             {
+                trigger_2.transform.position = player.transform.position;
                 trigger_2.SetActive(true);
                 break;
             }

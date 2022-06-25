@@ -1,2 +1,3 @@
-000.001|<b>Announcer</b>: Türmechanik wiederhergestellt.
-002.800|<b>Announcer</b>: <i>Teste…</i>
+002.183|<b>Announcer</b>: Schön! Sie sind einer der Wenigen, die diese Testkammer meistern konnten.
+008.370|<b>Announcer</b>: Ihre Problemlösungsfähigkeiten werden sehr von Nutzen sein. Vertrauen Sie ihren Instinkten.
+

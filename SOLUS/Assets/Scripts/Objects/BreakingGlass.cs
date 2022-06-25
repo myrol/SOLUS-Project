@@ -36,7 +36,14 @@ public class BreakingGlass : MonoBehaviour
         }
 
         SoundManager.Instance.playSFX(audio);
+        StartCoroutine(destroy());
+    }
 
+    private IEnumerator destroy()
+    {
+        yield return new WaitForSeconds(5);
+        glassObj.SetActive(false);
         Destroy(gameObject);
+        yield return null;
     }
 }
