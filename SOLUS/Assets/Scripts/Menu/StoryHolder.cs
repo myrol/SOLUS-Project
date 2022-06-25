@@ -43,7 +43,6 @@ public class StoryHolder : MonoBehaviour
             valveMain.GetComponent<SpinValveMain>().loadValveMain();
             lever.GetComponent<Lever>().loadLever();
             gears.GetComponent<turnGears>().updateGears();
-            furnace.GetComponent<Furnace>().loadFurnace();
             valve3.GetComponent<spinValve3>().loadValve3();
         }
     }
@@ -53,12 +52,12 @@ public class StoryHolder : MonoBehaviour
         /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             StartCoroutine(saveGame());
-        }*/
+        }
         if (Input.GetKeyDown(KeyCode.F1))
         {
             string path = Application.persistentDataPath + "/player.dat";
             File.Delete(path);
-        }
+        }*/
     }
 
     private IEnumerator saveGame()

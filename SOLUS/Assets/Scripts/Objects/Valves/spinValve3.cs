@@ -33,7 +33,23 @@ public class spinValve3 : MonoBehaviour
 
             yield return new WaitForSeconds(.3f);
             int counter = 0;
-            if (player.GetComponent<StoryHolder>().steampunk_furnace == 0)
+            if (player.GetComponent<StoryHolder>().steampunk_furnace == 2 && player.GetComponent<StoryHolder>().steampunk == 1)
+            {
+                while (elapsed < 180f)
+                {
+                    transform.Rotate(0.0f, 1f, 0.0f, Space.Self);
+                    elapsed += 0.12f;
+                    counter++;
+                    if (counter == 750)
+                    {
+                        player.GetComponent<StoryHolder>().steampunk++;
+                        StartCoroutine(silence());
+                    }
+                    yield return null;
+                }
+                player.GetComponent<StoryHolder>().steampunk_valve++;
+            }
+            else
             {
                 while (elapsed < 30f)
                 {
@@ -49,22 +65,6 @@ public class spinValve3 : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
                 yield return new WaitForSeconds(0.45f);
                 source.Stop();
-            }
-            else
-            {
-                while (elapsed < 180f)
-                {
-                    transform.Rotate(0.0f, 1f, 0.0f, Space.Self);
-                    elapsed += 0.12f;
-                    counter++;
-                    if (counter == 750)
-                    {
-                        player.GetComponent<StoryHolder>().steampunk++;
-                        StartCoroutine(silence());
-                    }
-                    yield return null;
-                }
-                player.GetComponent<StoryHolder>().steampunk_valve++;
             }
         }
     }

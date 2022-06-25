@@ -7,7 +7,7 @@ public class turnGears : MonoBehaviour
     public GameObject gear2;  // -> 12
     public GameObject gear8;  // -> 28
     public GameObject gear1;  // -> 12
-    public GameObject gear11_UI, gear2_UI, tesla, sparks_2, sparks_3, machine_group, turbine, player, destroy_coll;
+    public GameObject gear11_UI, gear2_UI, tesla, sparks_2, sparks_3, machine_group, turbine, player;
 
     public AudioClip explosionAudio, dropAudio, CutSceneAudio;
 
@@ -236,103 +236,5 @@ public class turnGears : MonoBehaviour
             gear2.SetActive(false);
             gear2_UI.SetActive(true);
         }
-    }
-    public IEnumerator failGears()
-    {
-        destroy_coll.SetActive(true);
-        AudioSource audioSource = turbine.GetComponent<AudioSource>();
-        audioSource.volume = 0.7f;
-        audioSource.PlayOneShot(explosionAudio, 1f);
-        float elapsed = 0.0f;
-        int counter = 0;
-        while (elapsed < 3f)
-        {
-            gear11.transform.Rotate(0.0f, 0.0f, 1.0f * speed * elapsed, Space.Self);
-            gear2.transform.Rotate(0.0f, 0.0f, -1.0f * speed * elapsed * (32f / 12f), Space.Self);
-            gear8.transform.Rotate(0.0f, 0.0f, -1.0f * speed * elapsed * (32f / 12f), Space.Self);
-            gear1.transform.Rotate(0.0f, 0.0f, 1.0f * speed * elapsed * (32f / 12f) * (28f / 12f), Space.Self);
-            elapsed += Time.deltaTime;
-            counter += 1;
-            if (counter > 20)
-                StartCoroutine(machine_group.GetComponent<MovingSparks>().startMovement());
-            if (elapsed < 2f)
-            {
-                if ((counter % 4) == 0)
-                    sparks_2.SetActive(true);
-                else if (((counter + 2) % 4) == 0)
-                    sparks_2.SetActive(false);
-            }
-            else if (elapsed < 3.5f)
-            {
-                if ((counter % 8) == 0)
-                    sparks_2.SetActive(true);
-                else if (((counter + 4) % 6) == 0)
-                    sparks_2.SetActive(false);
-            }
-            else
-            {
-                if ((counter % 8) == 0)
-                {
-                    sparks_2.SetActive(true);
-                    sparks_3.SetActive(true);
-                }
-                else if (((counter + 4) % 12) == 0)
-                {
-                    sparks_2.SetActive(false);
-                    sparks_3.SetActive(false);
-                }
-            }
-            yield return null;
-        }
-        while (elapsed > 0f)
-        {
-            audioSource.volume -= 0.001f;
-            gear11.transform.Rotate(0.0f, 0.0f, 1.0f * speed * elapsed, Space.Self);
-            gear2.transform.Rotate(0.0f, 0.0f, -1.0f * speed * elapsed * (32f / 12f), Space.Self);
-            gear8.transform.Rotate(0.0f, 0.0f, -1.0f * speed * elapsed * (32f / 12f), Space.Self);
-            gear1.transform.Rotate(0.0f, 0.0f, 1.0f * speed * elapsed * (32f / 12f) * (28f / 12f), Space.Self);
-            elapsed -= Time.deltaTime*2;
-            counter -= 1;
-            if (elapsed < 2f)
-            {
-                if ((counter % 4) == 0)
-                {
-                    sparks_3.SetActive(false);
-                    sparks_2.SetActive(true);
-                }
-                else if (((counter + 2) % 4) == 0)
-                    sparks_2.SetActive(false);
-            }
-            else if (elapsed < 3.5f)
-            {
-                if ((counter % 8) == 0)
-                {
-                    sparks_3.SetActive(false);
-                    sparks_2.SetActive(true);
-                }
-                else if (((counter + 4) % 6) == 0)
-                    sparks_2.SetActive(false);
-            }
-            else
-            {
-                if ((counter % 8) == 0)
-                {
-                    sparks_2.SetActive(true);
-                    sparks_3.SetActive(true);
-                }
-                else if (((counter + 4) % 12) == 0)
-                {
-                    sparks_2.SetActive(false);
-                    sparks_3.SetActive(false);
-                }
-            }
-            yield return null;
-        }
-        destroy_coll.SetActive(false);
-        sparks_2.SetActive(false);
-        sparks_3.SetActive(false);
-        StopCoroutine(machine_group.GetComponent<MovingSparks>().startMovement());
-
-        yield return null;
     }
 }

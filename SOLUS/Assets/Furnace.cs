@@ -6,8 +6,19 @@ using UnityEngine.Events;
 public class Furnace : MonoBehaviour
 {
     public GameObject player;
+    public AudioClip planks;
+    AudioSource audioSource;
+
     [SerializeField] private UnityEvent eve;
+
+#pragma warning disable CS0108
     [SerializeField] private string tag;
+#pragma warning restore CS0108
+
+    private void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,24 +26,18 @@ public class Furnace : MonoBehaviour
         {
             if (player.GetComponent<StoryHolder>().steampunk_furnace == 0)
             {
-                AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-                audioSource.Play();
-                float currentTime = 0;
-                while (currentTime < 2f)
-                {
-                    currentTime += Time.deltaTime;
-                    audioSource.volume = Mathf.Lerp(0f, 0.628f, currentTime / 2f);
-                }
+                audioSource.PlayOneShot(planks);
+                player.GetComponent<StoryHolder>().steampunk_furnace++;
+                other.gameObject.SetActive(false);
+                eve.Invoke();
             }
-            other.gameObject.SetActive(false);
         }
     }
 
-    public void loadFurnace()
+    public void startFurnace()
     {
         if (player.GetComponent<StoryHolder>().steampunk_furnace == 1)
         {
-            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.Play();
             float currentTime = 0;
             while (currentTime < 2f)
@@ -40,6 +45,7 @@ public class Furnace : MonoBehaviour
                 currentTime += Time.deltaTime;
                 audioSource.volume = Mathf.Lerp(0f, 0.628f, currentTime / 2f);
             }
+            player.GetComponent<StoryHolder>().steampunk_furnace++;
         }
     }
 }

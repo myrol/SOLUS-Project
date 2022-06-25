@@ -63,7 +63,6 @@ public class Lever : Interactable
         float elapsed = 0.0f;
         float direction = -1f;
         source.PlayOneShot(downAudio, 1f);
-        StartCoroutine(gears.GetComponent<turnGears>().failGears());
         while (elapsed < 180f)
         {
             moving.transform.Rotate((0.5f * direction), 0.0f, 0.0f, Space.Self);
