@@ -14,7 +14,6 @@ public class Seeker_collision : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("doener");
             StartCoroutine(FadeInOutImg(deathScreen));
             StartCoroutine(FadeInOut(hello));
         }
@@ -33,10 +32,11 @@ public class Seeker_collision : MonoBehaviour
             if (direction && elapsed != 255)
                 elapsed++;
             else
-                elapsed--;
+                elapsed-=2;
             objectUsing.GetComponent<Image>().color = new Color32(0, 0, 0, elapsed);
             if (elapsed == 255)
             {
+                elapsed--;
                 direction = false;
                 yield return new WaitForSeconds(2);
                 player.transform.position = room2.transform.position;
@@ -63,10 +63,11 @@ public class Seeker_collision : MonoBehaviour
             if (direction)
                 elapsed++;
             else
-                elapsed--;
+                elapsed-=2;
             objectUsing.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, elapsed);
             if (elapsed == 255)
             {
+                elapsed--;
                 direction = false;
                 yield return new WaitForSeconds(2);
             }

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class electrify : MonoBehaviour
 {
     public GameObject electric_arc, seekers, steampunk_locker;
     public AudioClip dialogueClip;
+    [SerializeField] private UnityEvent eve;
 
     private void Start()
     {
@@ -16,7 +18,7 @@ public class electrify : MonoBehaviour
     {
         electric_arc.SetActive(true);
         gameObject.GetComponent<AudioSource>().Play();
-        steampunk_locker.GetComponent<Door>().open();
+        eve.Invoke();
         yield return new WaitForSeconds(2.25f);
 
         electric_arc.SetActive(false);

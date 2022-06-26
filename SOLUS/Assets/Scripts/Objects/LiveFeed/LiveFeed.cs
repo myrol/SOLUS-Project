@@ -15,7 +15,7 @@ public class LiveFeed : Interactable
 
     private void activate()
     {
-        eve.Invoke();
+        eve.Invoke();   
     }
 }
 

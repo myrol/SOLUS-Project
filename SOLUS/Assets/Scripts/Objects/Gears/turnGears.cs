@@ -7,7 +7,7 @@ public class turnGears : MonoBehaviour
     public GameObject gear2;  // -> 12
     public GameObject gear8;  // -> 28
     public GameObject gear1;  // -> 12
-    public GameObject gear11_UI, gear2_UI, tesla, sparks_2, sparks_3, machine_group, turbine, player;
+    public GameObject gear11_UI, gear2_UI, tesla, sparks_2, sparks_3, machine_group, turbine, player, wall_destroy;
 
     public AudioClip explosionAudio, dropAudio, CutSceneAudio;
 
@@ -195,6 +195,7 @@ public class turnGears : MonoBehaviour
         gear1.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 
         //wegschleudern
+        wall_destroy.SetActive(false);
         elapsed = 0.0f;
         while (elapsed < 0.5f)
         {

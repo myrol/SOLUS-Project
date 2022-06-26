@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class placeKeyCard : Interactable
 {
     public GameObject keycard_placeholder, keycard_UI, player, keycard_placeholder_test1, keycard_placeholder_test2;
-    public AudioClip placeAudio;
+    public AudioClip placeAudio, jingle;
     [SerializeField] private UnityEvent eve;
 
     private void Start()
@@ -23,7 +24,15 @@ public class placeKeyCard : Interactable
             if (keycard_placeholder_test1.activeSelf && keycard_placeholder_test2.activeSelf)
             {
                 eve.Invoke();
+                StartCoroutine(playJingle());
             }
         }
+    }
+
+    private IEnumerator playJingle()
+    {
+        yield return new WaitForSeconds(2f);
+        SoundManager.Instance.playSFX(jingle);
+        yield return null;
     }
 }
