@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class electrify : MonoBehaviour
 {
-    public GameObject electric_arc, seekers, steampunk_locker;
+    public GameObject electric_arc, seekers;
     public AudioClip dialogueClip;
     [SerializeField] private UnityEvent eve;
 
