@@ -6,8 +6,8 @@ public class Carryable : MonoBehaviour      //Abstrakt damit man es für verschie
 {
     private Rigidbody rb;
     private Transform carryPosition;
-    [SerializeField] private float restedThreshold = .5f;
-    [SerializeField] private float fallingThreshold = 30f;
+    private float restedThreshold = .5f;
+    private float fallingThreshold = 20f;
     public bool pickedUp = false;
 
     private Vector3 lastRestedPosition;

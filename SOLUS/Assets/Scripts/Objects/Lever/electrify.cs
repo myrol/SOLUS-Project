@@ -22,7 +22,7 @@ public class electrify : MonoBehaviour
         yield return new WaitForSeconds(2.25f);
 
         electric_arc.SetActive(false);
-        GameObject.Find("DialogueManager").GetComponent<AudioSource>().PlayOneShot(dialogueClip);
+        DialogueManager.Instance.AddToQueue(dialogueClip);
         yield return new WaitForSeconds(4);
 
         //play announcer, licht anmachen

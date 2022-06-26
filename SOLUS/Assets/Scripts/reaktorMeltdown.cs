@@ -28,7 +28,7 @@ public class reaktorMeltdown : MonoBehaviour
 
     public IEnumerator meltdown()
     {
-        SoundManager.Instance.playSFX(announcer);
+        DialogueManager.Instance.AddToQueue(announcer);
         yield return new WaitForSeconds(3.3f);
         screen1.SetActive(false);
         screen2.SetActive(false);
