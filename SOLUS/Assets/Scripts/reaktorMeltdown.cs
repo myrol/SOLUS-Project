@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class reaktorMeltdown : MonoBehaviour
 {
-    public GameObject light1, light2, light3, light4, light5, light6, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3;
+    public GameObject light1, light2, light3, light4, light5, light6, seekers, screen1, screen2, reactor_screen1, reactor_screen2, reactor_screen3, reactor_but_interact, reactor_outer_color, reactor_inner_color;
     public AudioClip announcer, melting, flink;
     private bool done = false;
     float originalIntensity;
     Color32 originalColor;
+    public Material but_Material_on;
+    public Material but_Material_off;
 
     private void Start()
     {
         reactor_screen1.SetActive(false);
         reactor_screen2.SetActive(false);
         reactor_screen3.SetActive(false);
+        reactor_but_interact.layer = 0;
+        reactor_outer_color.GetComponent<MeshRenderer>().material = but_Material_off;
+        reactor_inner_color.GetComponent<MeshRenderer>().material = but_Material_off;
     }
 
     public void startMeltdownRrountine()
@@ -57,6 +62,9 @@ public class reaktorMeltdown : MonoBehaviour
         reactor_screen1.SetActive(true);
         reactor_screen2.SetActive(true);
         reactor_screen3.SetActive(true);
+        reactor_but_interact.layer = 7;
+        reactor_outer_color.GetComponent<MeshRenderer>().material = but_Material_on;
+        reactor_inner_color.GetComponent<MeshRenderer>().material = but_Material_on;
         seekers.SetActive(true);
         light1.GetComponent<Light>().color = originalColor;
         light2.GetComponent<Light>().color = originalColor;
